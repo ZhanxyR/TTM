@@ -58,7 +58,7 @@ pip install -r requirements.txt
 ## 🚀 Demo
 
 ### 1. Download Preprocessed Character Profiles and Database.
-Download from [Hugging Face](https://github.com/ZhanxyR/TTM).
+Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 
 The completed structure should be like:
 
@@ -92,7 +92,7 @@ sh scripts/demo.sh
 ```
 
 > [!NOTE]
-> For more details of our parameters, please click to see the details.
+> For more details of our parameters, please click on the folding bar below.
 <details>
 <summary><span style="font-weight: bold;">Specific args to be modified</span></summary>
 
@@ -243,6 +243,8 @@ sh scripts/demo.sh
 
 <a id="process"></a>
 ## 🎯 Complete Process
+
+Go through the complete process of TTM — automatically constructing RPLA from textual input.
 
 > [!IMPORTANT]
 > The entire process involves **a significant number of API calls**. Please confirm that you truly intend to proceed.

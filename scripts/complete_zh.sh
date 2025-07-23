@@ -1,0 +1,11 @@
+python -m apps.demo \
+-i "examples/片段_红楼梦" \
+-r "林黛玉, 黛玉" \
+-n demo_片段_红楼梦 \
+-u http://0.0.0.0:8000/v1 \
+-m Qwen3-32B \
+-l zh \
+-g \
+--test \
+--keep_utterance \
+--matching_type dynamic 

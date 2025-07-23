@@ -8,7 +8,7 @@ from graphrag.Option.Config2 import Config
 from libs.retriever.rag_dataset import RAGDataset 
 
 class BaseGraphRAG:
-    def __init__(self, model_name, model_url, api_key=None, config_path = './graphrag/Light_RAG.yaml', working_dir=None, dataset_path=None, dataset_name=None , embedding_model=None, max_concurrent=20,rebuild=False):
+    def __init__(self, model_name, model_url, api_key=None, config_path = './graphrag/Light_RAG.yaml', working_dir=None, dataset_path=None, dataset_name=None , embedding_model=None, max_concurrent=20, chunk_size=1200, chat=False, rebuild=False):
         assert dataset_name is not None, "dataset_name must be provided"
         assert dataset_path is not None, "dataset_path must be provided"
 
@@ -21,10 +21,13 @@ class BaseGraphRAG:
         config.graph.force = rebuild
         config.embedding.model = embedding_model
 
+        config.chunk.chunk_token_size = chunk_size + 500
+        config.chunk.chunk_overlap_token_size = 0
+
         self.rag = GraphRAG(config)
         self.dataset_path = dataset_path
         self.dataset_name = dataset_name
-        
+        self.chat_only = chat
 
     def build_graph_sync(self):
         asyncio.run(self.build_graph())
@@ -34,6 +37,11 @@ class BaseGraphRAG:
         return text_return, key_node, node_datas, key_edge, edge_datas
 
     async def build_graph(self):
+
+        if self.chat_only : 
+            is_exist = await self.rag._check_graph()
+            assert is_exist, "Please build the graph first."
+
         try :
             base_dataset = RAGDataset(
                 data_path=self.dataset_path

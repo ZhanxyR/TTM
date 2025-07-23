@@ -287,7 +287,7 @@ if __name__ == '__main__':
 
         # build graphrag from chunks
         if args.graphrag :
-            model.build_graphrag(dataset_path=os.path.join(root_dir, 'chunks.json'), working_dir=root_dir, dataset_name=args.name, rebuild=(args.ignore_cache or args.rebuild_graphrag), embedding_model=args.graph_embedding_model, max_concurrent = 1 if args.serial else args.workers, chunk_size=args.chunk_size+args.chunk_overlap)
+            model.build_graphrag(dataset_path=os.path.join(root_dir, 'chunks.json'), working_dir=root_dir, dataset_name=args.name, rebuild=(args.ignore_cache or args.rebuild_graphrag), embedding_model=args.graph_embedding_model, max_concurrent = 1 if args.serial else args.workers, chunk_size=args.chunk_size+args.chunk_overlap, chat=args.chat)
             logger.info(f'Build graphrag from chunks. Save to \'{os.path.join(root_dir, "rkg_graph")}\'.')
 
         # select the role with the most sentences

@@ -1,3 +1,4 @@
+import os
 from typing import Union, Any
 from pyfiglet import Figlet
 from graphrag.Core.Chunk.DocChunk import DocChunk
@@ -204,7 +205,28 @@ class GraphRAG(ContextMixin, BaseModel):
         last_stage_time = self.time_manager.stop_last_stage()
         logger.info(f"{stage_str} time(s): {last_stage_time:.2f}")
 
+
+    async def _check_graph(self):
+        working_dir = os.path.join(self.config.working_dir, "rkg_graph")
+        graph_storage_path = os.path.join(working_dir, "graph_storage_nx_data.graphml")
+        entities_vdb_path = os.path.join(working_dir, "entities_vdb")
+        relations_vdb_path = os.path.join(working_dir, "relations_vdb")
+
+        if not os.path.isfile(graph_storage_path):
+            logger.warning(f"Graph storage not found at: {graph_storage_path}")
+            return False
+
+        if self.config.use_entities_vdb and not os.path.isdir(entities_vdb_path):
+            logger.warning(f"Entities VDB not found at: {entities_vdb_path}")
+            return False
         
+        if self.config.use_relations_vdb and not os.path.isdir(relations_vdb_path):
+            logger.warning(f"Relations VDB not found at: {relations_vdb_path}")
+            return False
+
+        return True
+#
+
     async def insert(self, docs: Union[str, list[Any]]):
 
         """

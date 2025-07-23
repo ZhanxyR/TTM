@@ -25,6 +25,7 @@
 ### Test-Time-Matching (TTM) is an **automatic framework** to constrcut Role-Playing Language Agents (RPLAs) from **textual inputs**. TTM achieves high-fidelity role-playing perfromances through **test-time scaling** and **context engineering**. The decoupled role-related features (**personality**, **memory**, and **linguistic style**) are stored in plaintext, which further supports personalized customization.
 <br>
 
+<img width="1942" height="1272" alt="teaser" src="https://github.com/user-attachments/assets/a427b3fe-303c-43ad-bb75-4a48225e54fe" />
 
 
 ## Overview

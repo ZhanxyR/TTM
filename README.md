@@ -80,7 +80,7 @@ The completed structure should be like:
     |-- scripts
 ```
 
-### 2. Start a Local VLLM Server (Optional).
+### 2. Start a Local VLLM Server. (Optional)
 
 ```bash
 # Modify first: supplement or adjust the necessary parameters.

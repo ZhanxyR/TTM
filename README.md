@@ -26,11 +26,13 @@
 ## Overview
 - [1 - Installation](#installation)
 - [2 - Demo](#demo)
-- [3 - Acknowledgments](#acknowledgments)
-- [4 - Citation](#citation)
-- [5 - Contact](#contact)
+- [3 - Complete Process](#process)
+- [4 - Customization](#customization)
+- [5 - Acknowledgments](#acknowledgments)
+- [6 - Citation](#citation)
+- [7 - Contact](#contact)
 
-
+<a id="installation"></a>
 ## 📍 Installation
 
 ### 1. Get Started
@@ -47,7 +49,7 @@ conda activate ttm
 pip install -r requirements.txt
 ```
 
-
+<a id="demo"></a>
 ## 🚀 Demo
 
 ### 1. Download Preprocessed Character Profiles and Database.
@@ -83,9 +85,45 @@ sh scripts/vllm_server.sh
 sh scripts/demo.sh
 ```
 
-
+<a id="process"></a>
 ## 🎯 Complete Process
 
+> [!IMPORTANT]
+> The entire process involves a significant number of API calls. Please confirm that you truly intend to proceed.
+
+### 1. Try with Our Examples.
+```bash
+# Modify first: supplement or adjust the necessary parameters.
+sh scripts/complete_en.sh
+# Or
+sh scripts/complete_zh.sh
+```
+By default, the processed results will be saved to `cache/name` directory.
+
+The log files consist of TTM's log (`logs/name_time.log`) and [DIGIMON](https://github.com/JayLZhou/GraphRAG)'s log (`logs/GraphRAG_Logs/time.log`).
+
+> [!NOTE]
+> For more details of our parameters, please check the [Descriptions](./docs/Parameters.md).
+
+
+### 2. Run with Your Data.
+You should first organize the text files as below. Then modify the input and output pathes in the script.
+
+```
+-i examples/yours
+-n as_you_like
+
+|-- TTM
+    |-- examples
+        |-- yours
+            |-- 001.txt
+            |-- 002.txt
+```
+
+<a id="customization"></a>
+## 🎨 Customization
+
+Later.
 
 ## Acknowledgments
 
@@ -115,3 +153,4 @@ There are also many powerful resources that greatly benefit our work:
 
 ## Contact
 Zhan, Xiaoyu (zhanxy@smail.nju.edu.cn) and Fu, Xinyu (xinyu.fu@smail.nju.edu.cn).
+

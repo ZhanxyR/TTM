@@ -111,8 +111,9 @@ sh scripts/demo.sh
   The number of workers to be used for multi-threading. (`20` by default).
 #### --graphrag / -g
   Whether to use RAG for detailed memory. (`False` by default).
-> [!NOTE]
-> During the preprocessing stage, **the database is created only when this parameter is used**.
+<div style="border-left: 4px solid #42b983; background-color: #f0fff0; padding: 10px; margin: 10px 0;">
+<p><strong>Note:</strong> During the preprocessing stage, **the database is created only when this parameter is used**.</p>
+</div>
 
 #### --log
   The path to save the logs. (`logs` by default).
@@ -136,8 +137,9 @@ sh scripts/demo.sh
   Run in debug mode, with additional log infomation. (`False` by default).
 #### --chat
   Run in chatting mode, do not execute any document processing. (`False` by default)
-> [!NOTE]
-> Chatting mode will skip all of the preprocessing function, and mandatorily load the cached files. Ensure you have prepared the necessary files.
+<div style="border-left: 4px solid #42b983; background-color: #f0fff0; padding: 10px; margin: 10px 0;">
+<p><strong>Note:</strong> Chatting mode will skip all of the preprocessing function, and mandatorily load the cached files. Ensure you have prepared the necessary files.</p>
+</div>
 #### --test
   Run in test mode, with predefined user inputs rather than interaction. (`False` by default).
 #### --short
@@ -164,30 +166,35 @@ sh scripts/demo.sh
 
 #### --chunk_size
   The chunk size to be used for processing document. (`512` by default).
-> [!NOTE]
-> Increasing the chunk size can accelerate the processing time.
+<div style="border-left: 4px solid #42b983; background-color: #f0fff0; padding: 10px; margin: 10px 0;">
+<p><strong>Note:</strong> Increasing the chunk size can accelerate the processing time.</p>
+</div>
 #### --chunk_overlap
   The overlap size to be used for processing document. (`64` by default).
 #### --keep_utterance
   Do not split the utterances into sentences. (`False` by default).
-> [!NOTE]
-> This setting controls whether to store individual sentences or complete conversation utterances. **Setting it to True is recommended** if the number of historical utterances is enough for retrieving.
+<div style="border-left: 4px solid #42b983; background-color: #f0fff0; padding: 10px; margin: 10px 0;">
+<p><strong>Note:</strong> This setting controls whether to store individual sentences or complete conversation utterances. **Setting it to True is recommended** if the number of historical utterances is enough for retrieving.</p>
+</div>
 #### --use_haruhi
   Whether to use [Haruhi](https://huggingface.co/silk-road/Haruhi-Dialogue-Speaker-Extract_qwen18) for dialogues extraction. (`False` by default).
 #### --skip_summarize
   Skip the summarization step. (`False` by default).
 #### --process_only
   Only process the documents and save the intermediate results. (`False` by default).
-> [!NOTE]
-> It will exit immediately after preprocessing is complete.
+<div style="border-left: 4px solid #42b983; background-color: #f0fff0; padding: 10px; margin: 10px 0;">
+<p><strong>Note:</strong> It will exit immediately after preprocessing is complete.</p>
+</div>
 #### --rebuild_graphrag
   Force rebuilding the vector database. (`False` by default).
-> [!IMPORTANT]
-> Use with caution, as it will overwrite the cached files.
+<div style="border-left: 4px solid #ff6666; background-color: #fff0f0; padding: 10px; margin: 10px 0;">
+<p><strong>Important:</strong> Use with caution, as it will overwrite the cached files.</p>
+</div>
 #### --ignore_cache
   Force recalculation: recalculate everything and rewrite cached data. (`False` by default).
-> [!IMPORTANT]
-> Use with caution, as it will overwrite the cached files.
+<div style="border-left: 4px solid #ff6666; background-color: #fff0f0; padding: 10px; margin: 10px 0;">
+<p><strong>Important:</strong> Use with caution, as it will overwrite the cached files.</p>
+</div>
 
 </details>
 
@@ -200,12 +207,14 @@ sh scripts/demo.sh
   The number of related chunks to be used for memory. (`10` by default).
 #### --matching_type
   The matching type to be used for matching linguistic style query. (`dynamic` by default).
-> [!NOTE]
-> Select from ['simple', 'parallel', 'serial', 'dynamic']
+<div style="border-left: 4px solid #42b983; background-color: #f0fff0; padding: 10px; margin: 10px 0;">
+<p><strong>Note:</strong> Select from ['simple', 'parallel', 'serial', 'dynamic'].</p>
+</div>
 #### --matching_k
   The number of historical utterance examples for each linguistic style query. (`15` by default).
-> [!NOTE]
->  Hybrid retrieval will double the final numbers.
+<div style="border-left: 4px solid #42b983; background-color: #f0fff0; padding: 10px; margin: 10px 0;">
+<p><strong>Note:</strong> Hybrid retrieval will double the final numbers.</p>
+</div>
 #### --max_common_words
   The maximum number of common words of each type to be used for matching the linguistic style query. (`20` by default).
 #### --use_clean

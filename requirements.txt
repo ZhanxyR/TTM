@@ -12,6 +12,7 @@ langchain_experimental
 rank_bm25
 modelscope
 jieba
+vllm
 
 # Haruhi
 transformers_stream_generator==0.0.4
@@ -33,6 +34,7 @@ llama-index-legacy
 llama-index-embeddings-huggingface
 faiss-gpu
 numpy==1.26.4
+scipy==1.12.0
 umap
 pcst_fast
 huggingface_hub

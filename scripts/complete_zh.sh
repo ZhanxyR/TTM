@@ -7,5 +7,4 @@ python -m apps.demo \
 -l zh \
 -g \
 --test \
---keep_utterance \
---matching_type dynamic 
+--keep_utterance

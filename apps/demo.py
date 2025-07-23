@@ -20,8 +20,8 @@ def parse():
     parser = argparse.ArgumentParser()
 
     # Specific args to be modified
-    parser.add_argument('-i', '--input', type=str, default='examples/红楼梦', help='The directory of input documents, used for doucment processing.')
-    parser.add_argument('-r', '--roles', type=str, default='林黛玉,黛玉', help='The selected roles for role-playing in the roles list, separated by comma.')
+    parser.add_argument('-i', '--input', type=str, default='examples/yours', help='The directory of input documents, used for doucment processing. If document processing is no longer required, there is no need to specify it.')
+    parser.add_argument('-r', '--roles', type=str, default='roles', help='The selected roles for role-playing in the roles list, separated by comma.  The role name should be defined in the roles.json file.')
     parser.add_argument('-n', '--name', type=str, default='demo_test', help='The name for this experiment, used for saving and loading.')
     parser.add_argument('-c', '--cache', type=str, default='cache', help='The cache directory to be used for saving and loading the intermediate results.')
     parser.add_argument('-u', '--url', type=str, default='http://0.0.0.0:8000/v1', help='The IP address of the LLM server.')
@@ -29,44 +29,45 @@ def parse():
     parser.add_argument('-k', '--key', type=str, default='EMPTY', help='The API key of the LLM server.')
     parser.add_argument('-l', '--language', type=str, default='zh', help='The language of both the input documents and the used prompts.', choices=['zh', 'en'])
     parser.add_argument('-w', '--workers', type=int, default=20, help='The number of workers to be used for multi-threading.')
-    parser.add_argument('-g', '--graphrag', action='store_true', default=False, help='Whether to use RAG for detailed memory.')
+    parser.add_argument('-g', '--graphrag', action='store_true', default=False, help='Whether to use RAG for detailed memory. During the preprocessing stage, the database is created only when this parameter is used')
+
+    parser.add_argument('--log', type=str, default='logs', help='The path to save the logs.')
+    parser.add_argument('--max_tokens', type=int, default=2048, help='The maximum number of tokens to be used.')
+    parser.add_argument('--top_p', type=float, default=0.9, help='The top-p probability to be used.')
+    parser.add_argument('--temperature', type=float, default=0.7, help='The temperature to be used.')
 
     # Mode args
     # Multiple modes can be active at the same time, as they do not conflict with one another.
     parser.add_argument('--serial', action='store_true', default=False, help='Run in serial mode, without multi-threading.')
     parser.add_argument('--debug', action='store_true', default=False, help='Run in debug mode, with additional log infomation.')
     parser.add_argument('--chat', action='store_true', default=False, help='Run in chatting mode, do not execute any document processing.')
-    parser.add_argument('--test', action='store_true', default=False, help='Run in test mode, with predefined user inputs.')
+    parser.add_argument('--test', action='store_true', default=False, help='Run in test mode, with predefined user inputs rather than interaction.')
     parser.add_argument('--short', action='store_true', default=False, help='Run in short mode, the agent will generate shorter responses.')
 
     # Model args
     parser.add_argument('--haruhi_model', type=str, default='silk-road/Haruhi-Dialogue-Speaker-Extract_qwen18', help='The path to the Haruhi model. Won\'t be used if args.use_haruhi is False.')
-    parser.add_argument('--embedding_model', type=str, default='Qwen/Qwen3-Embedding-0.6B', help='The path to the embedding model.')
-    parser.add_argument('--rerank_model', type=str, default='Qwen/Qwen3-Reranker-0.6B', help='The path to the rerank method.')
-    parser.add_argument('--graph_embedding_model', type=str, default='BAAI/bge-large-zh-v1.5', help='The path to the graph model.')
+    parser.add_argument('--embedding_model', type=str, default='Qwen/Qwen3-Embedding-0.6B', help='The path to the embedding model.  Used for utterance retrieval.')
+    parser.add_argument('--rerank_model', type=str, default='Qwen/Qwen3-Reranker-0.6B', help='The path to the rerank model.  Used for utterance retrieval.')
+    parser.add_argument('--graph_embedding_model', type=str, default='BAAI/bge-large-zh-v1.5', help='The path to the graph embedding model. Used in RAG.')
 
     # Preprocessing args
-    parser.add_argument('--log', type=str, default='logs', help='The path to save the logs.')
-    parser.add_argument('--max_tokens', type=int, default=2048, help='The maximum number of tokens to be used.')
-    parser.add_argument('--top_p', type=float, default=0.9, help='The top-p probability to be used.')
-    parser.add_argument('--temperature', type=float, default=0.7, help='The temperature to be used.')
     parser.add_argument('--chunk_size', type=int, default=512, help='The chunk size to be used for processing document.')
     parser.add_argument('--chunk_overlap', type=int, default=64, help='The overlap size to be used for processing document.')
-    parser.add_argument('--keep_utterance', action='store_true', default=False, help='Do not split the utterances into sentences.')
+    parser.add_argument('--keep_utterance', action='store_true', default=False, help='Do not split the utterances into sentences. This setting controls whether to store individual sentences or complete conversation utterances. Setting it to True is recommended if the number of historical utterances is enough for retrieving.')
     parser.add_argument('--use_haruhi', action='store_true', default=False, help='Whether to use Haruhi for dialogues extraction.')
     parser.add_argument('--skip_summarize', action='store_true', default=False, help='Skip the summarization step.')
     parser.add_argument('--process_only', action='store_true', default=False, help='Only process the documents and save the intermediate results.')
-    parser.add_argument('--rebuild_graphrag', action='store_true', default=False, help='Rebuild the vector database.')
-    parser.add_argument('--ignore_cache', action='store_true', default=False, help='Force recalculation: recalculate everything and rewrite cached data.')
+    parser.add_argument('--rebuild_graphrag', action='store_true', default=False, help='Force rebuilding the vector database. Use with caution, as it will overwrite the cached files.')
+    parser.add_argument('--ignore_cache', action='store_true', default=False, help='Force recalculation: recalculate everything and rewrite cached data. Use with caution, as it will overwrite the cached files.')
 
     # TTM args
-    parser.add_argument('--retriever_k_l', type=int, default=40, help='The number of similar sentences to be retrieved for each linguistic style query.')
-    parser.add_argument('--memory_k', type=int, default=10, help='The number related chunks to be used for memory.')
+    parser.add_argument('--retriever_k_l', type=int, default=40, help='The number of similar sentences to be retrieved for each linguistic style query, used for reranking.')
+    parser.add_argument('--memory_k', type=int, default=10, help='The number of related chunks to be used for memory.')
     parser.add_argument('--matching_type', type=str, default='dynamic', help='The matching type to be used for matching linguistic style query.', choices=['simple', 'parallel', 'serial', 'dynamic'])
-    parser.add_argument('--matching_k', type=int, default=15, help='The number of examples for each linguistic style query.')
+    parser.add_argument('--matching_k', type=int, default=15, help='The number of historical utterance examples for each linguistic style query.')
     parser.add_argument('--max_common_words', type=int, default=20, help='The maximum number of common words of each type to be used for matching the linguistic style query.')
     parser.add_argument('--use_clean', action='store_true', default=False, help='Remove the linguistic style of the utterance when matching.')
-    parser.add_argument('--clean_first_only', action='store_true', default=False, help='Only remove the linguistic style of the first utterance during chatting.')
+    parser.add_argument('--clean_first_only', action='store_true', default=False, help='Only remove the linguistic style of the first time response (not the styleless response) during chatting.')
     parser.add_argument('--split_sentence', action='store_true', default=False, help='Split the sentence into sentences by comma for matching.')
 
     parser.add_argument('--disable_action', action='store_true', default=False, help='Disable the action display during chatting.')
@@ -74,7 +75,7 @@ def parse():
     parser.add_argument('--disable_background', action='store_true', default=False, help='Disable the background setting during chatting.')
     parser.add_argument('--disable_linguistic_preference', action='store_true', default=False, help='Disable the linguistic preference setting during chatting.')
     parser.add_argument('--disable_common_words', action='store_true', default=False, help='Disable the common words setting during chatting.')
-    parser.add_argument('--disable_matching', action='store_true', default=False, help='Disable the matching during chatting.')
+    parser.add_argument('--disable_matching', action='store_true', default=False, help='Disable the linguistic style matching during chatting.')
 
     return parser.parse_args()
 
@@ -286,13 +287,8 @@ if __name__ == '__main__':
 
         # build graphrag from chunks
         if args.graphrag :
-            model.build_graphrag(dataset_path=os.path.join(root_dir, 'chunks.json'), working_dir=root_dir, dataset_name=args.name, rebuild=(args.ignore_cache or args.rebuild_graphrag), embedding_model=args.graph_embedding_model, max_concurrent = 1 if args.serial else args.workers)
+            model.build_graphrag(dataset_path=os.path.join(root_dir, 'chunks.json'), working_dir=root_dir, dataset_name=args.name, rebuild=(args.ignore_cache or args.rebuild_graphrag), embedding_model=args.graph_embedding_model, max_concurrent = 1 if args.serial else args.workers, chunk_size=args.chunk_size+args.chunk_overlap)
             logger.info(f'Build graphrag from chunks. Save to \'{os.path.join(root_dir, "rkg_graph")}\'.')
-
-        if args.process_only:
-            progress.stop()
-            logger.info('Program terminated. The \'--process_only\' option prevents role-playing.')
-            exit()
 
         # select the role with the most sentences
         # sorted_roles_sentences = sorted(roles_sentences.items(), key=lambda x: len(x[1]), reverse=True)
@@ -332,6 +328,10 @@ if __name__ == '__main__':
         linguistic_style, personality, background = process_role(args, os.path.join(root_dir, confirmed_roles[0]), logger, model, chunks, selected_sentences, role_name)
         
         progress.stop()
+
+        if args.process_only:
+            logger.info('Program terminated. The \'--process_only\' option prevents role-playing.')
+            exit()
 
         logger.info(f'Create the TTM vector database with \'{len(selected_sentences)}\' sentences.')
         if len(selected_sentences) <= args.matching_k:

@@ -74,6 +74,10 @@ The completed structure should be like:
 ```
 
 ### 2. Start a Local VLLM Server (Optional).
+
+> [!NOTE]
+> For more details of our parameters, please check the [Descriptions](./docs/Parameters.md).
+
 ```bash
 # Modify first: supplement or adjust the necessary parameters.
 sh scripts/vllm_server.sh
@@ -89,7 +93,7 @@ sh scripts/demo.sh
 ## 🎯 Complete Process
 
 > [!IMPORTANT]
-> The entire process involves a significant number of API calls. Please confirm that you truly intend to proceed.
+> The entire process involves **a significant number of API calls**. Please confirm that you truly intend to proceed.
 
 ### 1. Try with Our Examples.
 ```bash
@@ -101,9 +105,6 @@ sh scripts/complete_zh.sh
 By default, the processed results will be saved to `cache/name` directory.
 
 The log files consist of TTM's log (`logs/name_time.log`) and [DIGIMON](https://github.com/JayLZhou/GraphRAG)'s log (`logs/GraphRAG_Logs/time.log`).
-
-> [!NOTE]
-> For more details of our parameters, please check the [Descriptions](./docs/Parameters.md).
 
 
 ### 2. Run with Your Data.
@@ -137,6 +138,7 @@ There are also many powerful resources that greatly benefit our work:
 - [CoSER](https://github.com/Neph0s/COSER)
 
 ## Citation
+If you find this work helpful, please consider citing our paper.
 
 ```bibtex
 @misc{zhan2025ttm,

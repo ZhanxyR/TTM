@@ -6,5 +6,4 @@ python -m apps.demo \
 -l en \
 -g \
 --chat \
---short \
---matching_type dynamic 
+--short 

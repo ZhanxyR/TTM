@@ -76,6 +76,8 @@ The completed structure should be like:
             |-- rolse.json
             |-- roles_sentences.json
             |-- chunks.json
+    |-- apps
+    |-- scripts
 ```
 
 ### 2. Start a Local VLLM Server (Optional).

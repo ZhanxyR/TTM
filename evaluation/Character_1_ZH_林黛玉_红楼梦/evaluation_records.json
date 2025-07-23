@@ -1,0 +1,22 @@
+{
+    "6_zh_Gemini25pro_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-2_zh_Qwen3_235b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 10, 8\n\n[Accuracy of Knowledge]: 10, 8\n\n[Quality of Conversation]: 10, 8",
+    "2_zh_Qwen3_235b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-6_zh_Gemini25pro_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 8, 10\n\n[Accuracy of Knowledge]: 9, 10\n\n[Quality of Conversation]: 8, 10",
+    "6_zh_Gemini25pro_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-1_zh_TTM_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 10, 8\n\n[Accuracy of Knowledge]: 10, 9\n\n[Quality of Conversation]: 10, 8",
+    "1_zh_TTM_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-6_zh_Gemini25pro_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 10, 9\n\n[Quality of Conversation]: 10, 8",
+    "6_zh_Gemini25pro_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-7_zh_GPT_4o_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 10, 8\n\n[Accuracy of Knowledge]: 10, 8\n\n[Quality of Conversation]: 10, 8",
+    "7_zh_GPT_4o_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-6_zh_Gemini25pro_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 9, 10\n\n[Accuracy of Knowledge]: 9, 10\n\n[Quality of Conversation]: 9, 10",
+    "6_zh_Gemini25pro_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-3_zh_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 10, 8\n\n[Accuracy of Knowledge]: 10, 8\n\n[Quality of Conversation]: 10, 8",
+    "3_zh_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-6_zh_Gemini25pro_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 8, 10\n\n[Accuracy of Knowledge]: 9, 10\n\n[Quality of Conversation]: 8, 10",
+    "2_zh_Qwen3_235b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-1_zh_TTM_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 8, 9\n\n[Accuracy of Knowledge]: 8, 9\n\n[Quality of Conversation]: 8, 9",
+    "1_zh_TTM_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-2_zh_Qwen3_235b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 10, 8\n\n[Accuracy of Knowledge]: 10, 8\n\n[Quality of Conversation]: 10, 8",
+    "2_zh_Qwen3_235b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-7_zh_GPT_4o_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 10, 9\n\n[Quality of Conversation]: 10, 8",
+    "7_zh_GPT_4o_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-2_zh_Qwen3_235b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 10, 9\n\n[Quality of Conversation]: 9, 8",
+    "2_zh_Qwen3_235b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-3_zh_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 10, 9\n\n[Quality of Conversation]: 10, 8",
+    "3_zh_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-2_zh_Qwen3_235b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 10, 9\n\n[Quality of Conversation]: 9, 8",
+    "1_zh_TTM_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-7_zh_GPT_4o_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 10, 7\n\n[Accuracy of Knowledge]: 10, 8\n\n[Quality of Conversation]: 10, 8",
+    "7_zh_GPT_4o_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-1_zh_TTM_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 9, 10\n\n[Accuracy of Knowledge]: 9, 10\n\n[Quality of Conversation]: 9, 10",
+    "1_zh_TTM_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-3_zh_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 10, 7\n\n[Accuracy of Knowledge]: 10, 8\n\n[Quality of Conversation]: 10, 7",
+    "3_zh_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-1_zh_TTM_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 8, 10\n\n[Accuracy of Knowledge]: 8, 10\n\n[Quality of Conversation]: 8, 10",
+    "7_zh_GPT_4o_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-3_zh_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 10, 9\n\n[Quality of Conversation]: 10, 8",
+    "3_zh_Qwen3_32b_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt-7_zh_GPT_4o_\u6797\u9edb\u7389_\u7ea2\u697c\u68a6.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 10, 9\n\n[Quality of Conversation]: 9, 8"
+}

@@ -1,0 +1,23 @@
+llm:
+  api_type: "open_llm" # or openai
+  base_url: ""
+  model: "Qwen2.5-14B-Instruct"
+  api_key: 'ok'
+
+embedding:
+  api_type: "hf"  # or  ollama / openai.
+  # base_url: "https://cfcus02.opapi.win/v1"  # or forward url / other llm url
+  api_key: "..."
+  model: ""
+  cache_dir: "./cache"
+  dimensions: 1024
+  max_token_size: 8102
+  embed_batch_size: 128
+  embedding_func_max_async: 16
+ 
+# data_root:  "./datasets/" # Root directory for data
+# dataset_name: 'test_data'
+
+
+# working_dir: "./libs/graphrag/results" # Result directory for the experiment
+exp_name:  'test' 

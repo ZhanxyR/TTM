@@ -60,6 +60,68 @@ pip install -r requirements.txt
 ### 1. Download Preprocessed Character Profiles and Database
 Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 
+
+<style>
+  .nested {
+    margin-left: 20px;
+  }
+</style>
+
+<details>
+<summary><span style="font-weight: bold;">List of Preprocessed Books and Characters</span></summary>
+<details class="nested">
+<summary><span style="font-weight: bold;">Chinese</span></summary>
+
+<details class="nested">
+<summary><span style="font-weight: bold;">红楼梦_Qwen25_32B</span></summary>
+<div class="nested">
+
+#### 1. 林黛玉， 黛玉
+#### 2. 宝玉， 贾宝玉
+#### 3. 贾母
+#### 4. 王熙凤， 凤姐
+#### 5. 贾政
+#### 6. 贾琏
+#### 7. 宝钗，薛宝钗
+
+</div>
+</details>
+
+<details class="nested">
+<summary><span style="font-weight: bold;">天龙八部_Qwen25_32B</span></summary>
+<div class="nested">
+
+#### 1. 慕容复
+#### 2. 木婉清
+#### 3. 段誉
+#### 4. 王语嫣
+#### 5. 萧峰
+#### 6. 虚竹
+
+</div>
+</details>
+
+</details>
+
+<details class="nested">
+<summary><span style="font-weight: bold;">English</span></summary>
+
+<details class="nested">
+<summary><span style="font-weight: bold;">Harry_Potter_1_4_Qwen25_32B</span></summary>
+<div class="nested">
+
+#### 1. Dumbledore
+#### 2. Hermione
+#### 3. Snape
+#### 4. Malfoy
+
+</div>
+</details>
+
+</details>
+</details>
+<br>
+
 The completed structure should be like:
 
 ```
@@ -105,6 +167,9 @@ sh scripts/demo.sh
   The directory of input documents, used for doucment processing. If document processing is no longer required, there is no need to specify it.
 #### `--roles / -r`
   The selected roles for role-playing in the roles list, separated by comma. The role name should be defined in the roles.json file.
+
+  **Note:** Roles will be utilized to retrieve historical utterances from the `roles_sentences.json` file, where the role acts as the key value. Should a role be divided into multiple entities within the JSON file, it becomes necessary to specify all relevant entities here to ensure the retrieval of a complete historical conversation.
+
 #### `--name / -n`
   The name for this experiment, used for saving and loading.
 #### `--cache / -c`

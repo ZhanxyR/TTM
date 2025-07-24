@@ -61,20 +61,14 @@ pip install -r requirements.txt
 Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 
 
-<style>
-  .nested {
-    margin-left: 20px;
-  }
-</style>
-
 <details>
 <summary><span style="font-weight: bold;">List of Preprocessed Books and Characters</span></summary>
-<details class="nested">
+<details style="margin-left: 20px;>
 <summary><span style="font-weight: bold;">Chinese</span></summary>
 
-<details class="nested">
+<details style="margin-left: 40px;>
 <summary><span style="font-weight: bold;">红楼梦_Qwen25_32B</span></summary>
-<div class="nested">
+<div style="margin-left: 60px;>
 
 #### 1. 林黛玉， 黛玉
 #### 2. 宝玉， 贾宝玉
@@ -87,9 +81,9 @@ Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 </div>
 </details>
 
-<details class="nested">
+<details style="margin-left: 40px;>
 <summary><span style="font-weight: bold;">天龙八部_Qwen25_32B</span></summary>
-<div class="nested">
+<div style="margin-left: 60px;>
 
 #### 1. 慕容复
 #### 2. 木婉清
@@ -103,12 +97,12 @@ Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 
 </details>
 
-<details class="nested">
+<details style="margin-left: 20px;>
 <summary><span style="font-weight: bold;">English</span></summary>
 
-<details class="nested">
+<details style="margin-left: 40px;>
 <summary><span style="font-weight: bold;">Harry_Potter_1_4_Qwen25_32B</span></summary>
-<div class="nested">
+<div style="margin-left: 60px;>
 
 #### 1. Dumbledore
 #### 2. Hermione

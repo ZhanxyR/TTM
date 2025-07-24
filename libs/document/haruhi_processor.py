@@ -95,14 +95,16 @@ class HaruhiProcessor:
 
                 conversations = response["conversations"]
 
+                correct_conversations = []
+
                 for conversation in conversations:
-                    speaker = conversation["said_by"]
-                    content = conversation["dialogue"]
-                    # dsp_text = dsp_text + "\n" + speaker + " : " + content
+                    if 'said_by' not in conversation.keys() or 'dialogue' not in conversation.keys():
+                        continue
 
                     conversation["chunk_id"] = i
+                    correct_conversations.append(conversation)
 
-                dialogues.append(conversations)
+                dialogues.append(correct_conversations)
 
             except:
                 # print(response_str)

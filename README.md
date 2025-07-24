@@ -73,7 +73,7 @@ The completed structure should be like:
                 |-- background.json
                 |-- personality.json
                 |-- linguistic_style.json   
-            |-- rolse.json
+            |-- roles.json
             |-- roles_sentences.json
             |-- chunks.json
     |-- apps

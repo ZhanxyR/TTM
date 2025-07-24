@@ -139,7 +139,7 @@ sh scripts/demo.sh
 #### `--roles / -r`
   The selected roles for role-playing in the roles list, separated by comma. The role name should be defined in the roles.json file.
 
-  **Note:** Roles will be utilized to retrieve historical utterances from the `roles_sentences.json` file, where the role acts as the key value. Should a role be divided into multiple entities within the JSON file, it becomes necessary to specify all relevant entities here to ensure the retrieval of a complete historical conversation.
+  **Note:** Roles will be utilized to retrieve historical utterances from the `roles_sentences.json` file and act as the key value. Should a role be divided into multiple entities within the JSON file, it becomes necessary to specify all relevant entities here to ensure the retrieval of a complete historical utterances.
 
 #### `--name / -n`
   The name for this experiment, used for saving and loading.

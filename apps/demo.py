@@ -25,7 +25,7 @@ def parse():
     parser.add_argument('-n', '--name', type=str, default='demo_test', help='The name for this experiment, used for saving and loading.')
     parser.add_argument('-c', '--cache', type=str, default='cache', help='The cache directory to be used for saving and loading the intermediate results.')
     parser.add_argument('-u', '--url', type=str, default='http://0.0.0.0:8000/v1', help='The IP address of the LLM server.')
-    parser.add_argument('-m', '--model', type=str, default='Qwen-3-32B', help='The model name of the LLM server.')
+    parser.add_argument('-m', '--model', type=str, default='Qwen3-32B', help='The model name of the LLM server.')
     parser.add_argument('-k', '--key', type=str, default='EMPTY', help='The API key of the LLM server.')
     parser.add_argument('-l', '--language', type=str, default='zh', help='The language of both the input documents and the used prompts.', choices=['zh', 'en'])
     parser.add_argument('-w', '--workers', type=int, default=20, help='The number of workers to be used for multi-threading.')

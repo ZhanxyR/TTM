@@ -3,7 +3,7 @@ python -m apps.demo \
 --roles "宝玉" \
 --name demo_片段_红楼梦 \
 --url http://0.0.0.0:8000/v1 \
---model Qwen-3-32B \
+--model Qwen3-32B \
 --language zh \
 --graphrag \
 --test \

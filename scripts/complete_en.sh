@@ -3,7 +3,7 @@ python -m apps.demo \
 --roles "Mr. Bennet" \
 --name demo_fragment_Pride_and_Prejudice \
 --url http://0.0.0.0:8000/v1 \
---model Qwen-3-32B \
+--model Qwen3-32B \
 --language en \
 --graphrag \
 --test \

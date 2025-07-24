@@ -82,6 +82,12 @@ Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 - 贾琏
 - 宝钗，薛宝钗
 
+#### **三国演义_Qwen25_32B**
+- 孔明
+
+#### **西游记_Qwen25_32B**
+- 八戒
+
 #### **天龙八部_Qwen25_32B**
 - 慕容复
 - 木婉清
@@ -89,6 +95,12 @@ Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 - 王语嫣
 - 萧峰
 - 虚竹
+
+#### **神雕侠侣_Qwen25_32B**
+- 杨过
+
+#### **三体_Qwen25_32B**
+- 罗辑
 
 </details>
 

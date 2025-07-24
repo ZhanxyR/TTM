@@ -78,12 +78,17 @@ Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 - 宝玉， 贾宝玉
 - 贾母
 - 王熙凤， 凤姐
+- 贾政
+- 贾琏
+- 宝钗，薛宝钗
 
 #### **天龙八部_Qwen25_32B**
 - 慕容复
 - 木婉清
 - 段誉
 - 王语嫣
+- 萧峰
+- 虚竹
 
 </details>
 

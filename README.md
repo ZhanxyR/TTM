@@ -57,7 +57,7 @@ pip install -r requirements.txt
 <a id="demo"></a>
 ## 🚀 Demo
 
-### 1. Download Preprocessed Character Profiles and Database.
+### 1. Download Preprocessed Character Profiles and Database
 Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 
 The completed structure should be like:
@@ -80,14 +80,17 @@ The completed structure should be like:
     |-- scripts
 ```
 
-### 2. Start a Local VLLM Server. (Optional)
+### 2. Start a Local [vLLM](https://github.com/vllm-project/vllm) Server (Optional)
 
 ```bash
 # Modify first: supplement or adjust the necessary parameters.
 sh scripts/vllm_server.sh
 ```
 
-### 3. Start Chatting.
+### 3. Start Chatting
+
+We interact with the LLM server using the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).
+
 ```bash
 # Modify first: supplement or adjust the necessary parameters.
 sh scripts/demo.sh
@@ -251,7 +254,7 @@ Go through the complete process of TTM — automatically constructing RPLA from 
 > [!IMPORTANT]
 > The entire process involves **a significant number of API calls**. Please confirm that you truly intend to proceed.
 
-### 1. Try with Our Examples.
+### 1. Try with Our Examples
 ```bash
 # Modify first: supplement or adjust the necessary parameters.
 sh scripts/complete_en.sh
@@ -263,7 +266,7 @@ By default, the processed results will be saved to `cache/name` directory.
 The log files consist of TTM's log (`logs/name_time.log`) and [DIGIMON](https://github.com/JayLZhou/GraphRAG)'s log (`logs/GraphRAG_Logs/time.log`).
 
 
-### 2. Run with Your Data.
+### 2. Run with Your Data
 You should first organize the text files as below. Then modify the input and output pathes in the script.
 
 ```

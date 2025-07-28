@@ -97,7 +97,9 @@ class LLM:
     def analyze_personality_from_chunks(self, chunks, roles):
         return self.generation_agent.analyze_personality_from_chunks_wrapper(chunks, roles, self.serial)
     
-    def extract_background_from_chunks(self, chunks, roles, freq=5):
+    def extract_background_from_chunks(self, chunks, roles, freq=10):
+        if self.serial:
+            return self.generation_agent.extract_background_from_chunks_serial(chunks, roles, freq=freq)
         return self.generation_agent.extract_background_from_chunks(chunks, roles, freq=freq)
         
     def analyze_linguistic_style_from_sentences(self, sentences, max_words=10):

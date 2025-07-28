@@ -1,7 +1,7 @@
 import re
 
 from collections import defaultdict
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from libs.utils.logger import get_logger
 
@@ -281,24 +281,147 @@ class GenerationAgent():
 
         return content, characters, used_related_chunks
     
-    def extract_background_from_chunks(self, chunks, roles, freq=5):
+    def extract_background_from_chunk(self, chunk, role, candidate_keys):
+        message = self.prompt_wrapper('extract_background_from_chunk', chunk=chunk, role=role, keys=candidate_keys)
+        response = self.send_message(message)
+        content = response.content.strip()
+        return content
+    
+    def combine_background_key(self, background, key):
+        post_message = self.prompt_wrapper('combine_duplicate_backgrounds', content=background)
+        response = self.send_message(post_message)
+        content = response.content.strip().replace('/n', '')
+        
+        split_content = re.split(r'[；;、]', content)
+        temp = set(bg.strip() for bg in split_content if bg.strip())
+        content = ';'.join(temp)
+
+        return content, key
+
+    def combine_backgrounds(self, background, candidate_keys):
+        new_background = {}
+        for k in background:
+            if k in candidate_keys:
+                new_background[k], _ = self.combine_background_key(background[k], k)
+                
+        return new_background
+    
+    def process_background_from_chunks(self, chunks, role, candidate_keys, bad_info):
         background = {}
 
+        for i, c in enumerate(chunks):
+            content = self.extract_background_from_chunk(c, role, candidate_keys)
+
+            if content == 'FALSE':
+                continue
+
+            info = self.extract_info_from_content(content)
+            for k in info:
+                k_search = k.strip().lower()
+                info[k] = info[k].strip()
+                if k_search not in background:
+                    background[k_search] = info[k]
+                    continue
+
+                bad = any(b in info[k] and len(info[k]) < len(background[k_search]) for b in bad_info)
+                if not bad:
+                    background[k_search] = background[k_search] + ';' + info[k]
+
+        background = self.combine_backgrounds(background, candidate_keys)
+
+        self.progress.advance(self.step_progress, len(chunks))
+        
+        return background
+    
+    def get_info_for_background_extraction(self):
         if self.language == 'zh':
             candidate_keys = ['姓名', '性别', '年龄', '种族','身份职业', '外貌特征', '身体状况', '家庭情况', '时代背景', '人际关系', '重要财产物品', '特殊技能', '兴趣爱好'] 
         else:
             candidate_keys = ['gender', 'name', 'age', 'race', 'occupation', 'appearance', 'physical condition', 'family background', 'historical era', 'interpersonal relationship', 'important possessions', 'skills', 'hobbies']
-
+        
         bad_info = ['提及', '信息', '未知', 'FALSE', 'information', 'provided', 'specified']
+        
+        return candidate_keys, bad_info
+
+    def extract_background_from_chunks(self, chunks, roles, freq=10):
+        background = {}
+
+        candidate_keys, bad_info = self.get_info_for_background_extraction()
+        
+        self.step_progress = self.progress.add_task(description=f"Extracting background of {roles} from {len(chunks)} chunks", total=len(chunks))
+        combination_task = self.progress.add_task(description=f"Combining background of {roles} from {len(chunks)} chunks", total=len(chunks))
+
+        def worker(chunk_batch):
+            try:
+                partial_background = self.process_background_from_chunks(chunk_batch, roles, candidate_keys, bad_info)
+            except Exception as e:
+                self.logger.error(f'Error processing background from chunk batch: {e}')
+
+            return partial_background
+
+        with ThreadPoolExecutor(max_workers=self.workers) as executor:
+            futures = []
+            for i in range(0, len(chunks), freq):
+                chunk_batch = chunks[i:i+freq]
+                futures.append(executor.submit(worker, chunk_batch))
+
+            def combine_background_mp(background, candidate_keys):
+                new_background = {}
+                combined_futures = []
+                
+                for k in background:
+                    if k in candidate_keys:
+                        combined_futures.append(executor.submit(self.combine_background_key, background[k], k))
+
+                for future in as_completed(combined_futures):
+                    new_background[future.result()[1]] = future.result()[0]
+
+                return new_background
+
+            count = 0
+            for future in as_completed(futures):
+                count += 1
+                partial_background = future.result()
+                for k in partial_background:
+                    if k not in background:
+                        background[k] = partial_background[k]
+                    else:
+                        split_existing = set(re.split(r'[；;、]', background[k]))
+                        split_new = set(re.split(r'[；;、]', partial_background[k]))
+                        combined = ';'.join(split_existing.union(split_new))
+                        background[k] = combined
+
+                if count % freq == 0:
+                    background = combine_background_mp(background, candidate_keys)
+
+                    if self.debug:
+                        self.logger.info('----------- Background -----------')
+                        for k in background:
+                            self.logger.info(f'{k}: {background[k]}')
+
+                    self.progress.advance(combination_task, freq * freq)
+
+        combined_background = combine_background_mp(background, candidate_keys)
+        self.progress.advance(combination_task, len(chunks)%(freq * freq))
+
+        if not self.debug:
+            self.progress.update(self.step_progress, visible=False)
+            self.progress.update(combination_task, visible=False)
+            self.progress.refresh()
+
+        return combined_background
+    
+    def extract_background_from_chunks_serial(self, chunks, roles, freq=5):
+        background = {}
+
+        candidate_keys, bad_info = self.get_info_for_background_extraction()
 
         task = self.progress.add_task(description=f"Extracting background of {roles} from {len(chunks)} chunks", total=len(chunks))
 
         count = 0
 
         for i, c in enumerate(chunks):
-            message = self.prompt_wrapper('extract_background_from_chunk', chunk=c, role=roles, keys=candidate_keys)
-            response = self.send_message(message)
-            content = response.content.strip()
+            content = self.extract_background_from_chunk(c, roles, candidate_keys)
 
             self.progress.advance(task)
 
@@ -327,13 +450,9 @@ class GenerationAgent():
                         post_message = self.prompt_wrapper('combine_duplicate_backgrounds', content=background[k])
                         response = self.send_message(post_message)
                         content = response.content.strip().replace('/n', '')
-                        temp = set()
 
                         split_content = re.split(r'[；;、]', content)
-                        for bg in split_content:
-                            bg = bg.strip()
-                            if bg:
-                                temp.add(bg)
+                        temp = set(bg.strip() for bg in split_content if bg.strip())
                         content = ';'.join(temp) 
                         new_background[k] = content
 

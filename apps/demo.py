@@ -56,6 +56,7 @@ def parse():
     parser.add_argument('--keep_utterance', action='store_true', default=False, help='Do not split the utterances into sentences. This setting controls whether to store individual sentences or complete conversation utterances. Setting it to True is recommended if the number of historical utterances is enough for retrieving.')
     parser.add_argument('--use_haruhi', action='store_true', default=False, help='Whether to use Haruhi for dialogues extraction.')
     parser.add_argument('--skip_summarize', action='store_true', default=False, help='Skip the summarization step.')
+    parser.add_argument('--bg_summarize_freq', type=int, default=10, help='The frequency to summarize the background.')
     parser.add_argument('--process_only', action='store_true', default=False, help='Only process the documents and save the intermediate results.')
     parser.add_argument('--rebuild_graphrag', action='store_true', default=False, help='Force rebuilding the vector database. Use with caution, as it will overwrite the cached files.')
     parser.add_argument('--ignore_cache', action='store_true', default=False, help='Force recalculation: recalculate everything and rewrite cached data. Use with caution, as it will overwrite the cached files.')
@@ -232,7 +233,7 @@ def process_role(args, root_dir, logger, model, chunks, selected_sentences, role
 
     # background
     if (not args.chat) and recalculate(args.ignore_cache, [background_path]):
-        background = model.extract_background_from_chunks(related_chunks, role_name)
+        background = model.extract_background_from_chunks(related_chunks, role_name, args.bg_summarize_freq)
 
         save_to_json(background, background_path)
         logger.info(f'Extract background. Save to \'{background_path}\'.')

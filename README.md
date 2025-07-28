@@ -70,6 +70,15 @@ Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 - Hermione
 - Snape
 - Malfoy
+- Ron
+- Harry
+- Hagrid
+
+#### **Pride_and_Prejudice_Qwen25_32b**
+- Elizabeth
+
+#### **Little_Women_Qwen3_32b**
+- Jo
 
 ## **Chinese**
 
@@ -237,6 +246,8 @@ sh scripts/demo.sh
   Whether to use [Haruhi](https://huggingface.co/silk-road/Haruhi-Dialogue-Speaker-Extract_qwen18) for dialogues extraction. (`False` by default).
 #### `--skip_summarize`
   Skip the summarization step. (`False` by default).
+#### `--bg_summarize_freq`
+  The frequency to summarize the background. (`10` by default).
 #### `--process_only`
   Only process the documents and save the intermediate results. (`False` by default).
 

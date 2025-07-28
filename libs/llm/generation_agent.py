@@ -401,8 +401,8 @@ class GenerationAgent():
 
                     self.progress.advance(combination_task, freq * freq)
 
-        combined_background = combine_background_mp(background, candidate_keys)
-        self.progress.advance(combination_task, len(chunks)%(freq * freq))
+            combined_background = combine_background_mp(background, candidate_keys)
+            self.progress.advance(combination_task, len(chunks)%(freq * freq))
 
         if not self.debug:
             self.progress.update(self.step_progress, visible=False)

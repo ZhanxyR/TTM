@@ -140,12 +140,13 @@ def extract_background_from_chunk(chunk, role, keys):
     return message
 
 
-def combine_duplicate_backgrounds(content):
+def combine_duplicate_backgrounds(content, key):
 
     message = f"The following content contains identity background information about a character, but there may be duplicate or conflicting descriptions. \n\
                 Please organize and merge the content as appropriate.\n\
                 Original content:\n\
                 {content}\n\
+                Please extract and summarize information related to the {key} of the character. Extract only the most important information and do not repeat the descriptions.\n\
                 Summarize and merge similar or identical entries. Do not include conflicting information.\n\
                 Present the results in a clear and structured format, separated by semicolons (;). Do not add any explanations or additional content."
 

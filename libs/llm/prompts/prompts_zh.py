@@ -135,11 +135,12 @@ def extract_background_from_chunk(chunk, role, keys):
     return message
 
 
-def combine_duplicate_backgrounds(content):
+def combine_duplicate_backgrounds(content, key):
 
     message = f"以下内容包含了一个角色的身份背景信息，但其中存在相似或冲突的描述，请对内容进行整理和合并。\n\
                 原始内容如下：\n\
                 {content}\n\
+                请提取并总结与角色的{key}相关的信息，只提取最重要的信息，不要重复描述。\n\
                 请将相似或相同的内容总结并合并，冲突内容不记录，将结果以条理清晰的方式重新呈现，以分号间隔，不要任何解释或其他附加内容。"
 
     return message

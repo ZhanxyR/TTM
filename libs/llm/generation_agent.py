@@ -288,7 +288,7 @@ class GenerationAgent():
         return content
     
     def combine_background_key(self, background, key):
-        post_message = self.prompt_wrapper('combine_duplicate_backgrounds', content=background)
+        post_message = self.prompt_wrapper('combine_duplicate_backgrounds', content=background, key=key)
         response = self.send_message(post_message)
         content = response.content.strip().replace('/n', '')
         
@@ -365,7 +365,7 @@ class GenerationAgent():
                 chunk_batch = chunks[i:i+freq]
                 futures.append(executor.submit(worker, chunk_batch))
 
-            def combine_background_mp(background, candidate_keys):
+            def combine_background_mt(background, candidate_keys):
                 new_background = {}
                 combined_futures = []
                 
@@ -377,22 +377,45 @@ class GenerationAgent():
                     new_background[future.result()[1]] = future.result()[0]
 
                 return new_background
+            
+            # def add_partial_background(partial_background, key, background):
+            #     if key not in background:
+            #         bg = ';'.join(set(re.split(r'[；;、]', partial_background[key])))
+            #     else:
+            #         split_existing = set(re.split(r'[；;、]', background[key]))
+            #         split_new = set(re.split(r'[；;、]', partial_background[key]))
+            #         bg = ';'.join(split_existing.union(split_new))
+
+            #     return bg, key
 
             count = 0
             for future in as_completed(futures):
                 count += 1
                 partial_background = future.result()
+
+                # add_futures = []
                 for k in partial_background:
+                    # unexpected content
+                    if k not in candidate_keys:
+                        continue
+                    if ':' in partial_background[k] or '：' in partial_background[k]:
+                        continue
+        
                     if k not in background:
-                        background[k] = partial_background[k]
+                        background[k] = ';'.join(set(re.split(r'[；;、]', partial_background[k])))
                     else:
                         split_existing = set(re.split(r'[；;、]', background[k]))
                         split_new = set(re.split(r'[；;、]', partial_background[k]))
                         combined = ';'.join(split_existing.union(split_new))
                         background[k] = combined
+                    # add_futures.append(executor.submit(add_partial_background, partial_background, k, background))
+
+                # for future in as_completed(add_futures):
+                #     background[future.result()[1]] = future.result()[0]
+                    
 
                 if count % freq == 0:
-                    background = combine_background_mp(background, candidate_keys)
+                    background = combine_background_mt(background, candidate_keys)
 
                     if self.debug:
                         self.logger.info('----------- Background -----------')
@@ -401,7 +424,7 @@ class GenerationAgent():
 
                     self.progress.advance(combination_task, freq * freq)
 
-            combined_background = combine_background_mp(background, candidate_keys)
+            combined_background = combine_background_mt(background, candidate_keys)
             self.progress.advance(combination_task, len(chunks)%(freq * freq))
 
         if not self.debug:
@@ -447,7 +470,7 @@ class GenerationAgent():
                 new_background = {}
                 for k in background:
                     if k in candidate_keys:
-                        post_message = self.prompt_wrapper('combine_duplicate_backgrounds', content=background[k])
+                        post_message = self.prompt_wrapper('combine_duplicate_backgrounds', content=background[k], key=k)
                         response = self.send_message(post_message)
                         content = response.content.strip().replace('/n', '')
 

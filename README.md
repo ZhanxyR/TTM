@@ -330,13 +330,19 @@ By default, the processed results will be saved to `cache/name` directory.
 
 The log files consist of TTM's log (`logs/name_time.log`) and [DIGIMON](https://github.com/JayLZhou/GraphRAG)'s log (`logs/GraphRAG_Logs/time.log`).
 
+### 2. Extract Profiles for Another Character
+Just modify the `--roles`. Make sure the specific role name exists in the `roles_sentences.json`.
 
-### 2. Run with Your Data
+```bash
+--roles role_name
+```
+
+### 3. Run with Your Data
 You should first organize the text files as below. Then modify the input and output pathes in the script.
 
 ```
--i examples/yours
--n as_you_like
+--input examples/yours
+--name as_you_like
 
 |-- TTM
     |-- examples

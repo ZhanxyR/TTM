@@ -80,6 +80,12 @@ Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 #### **Little_Women_Qwen3_32b**
 - Jo
 
+#### **The_Three_Musketeers_Qwen3_32b**
+- d'Artagnan
+
+#### **Vanity_Fair_Qwen3_32b**
+- Becky
+
 ## **Chinese**
 
 #### **红楼梦_Qwen25_32B**
@@ -143,7 +149,7 @@ sh scripts/vllm_server.sh
 
 ### 3. Start Chatting
 
-We interact with the LLM server using the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).
+We call the LLM API by providing the `url`, `model_name`, and optionally an `API key` for authentication.
 
 ```bash
 # Modify first: supplement or adjust the necessary parameters.

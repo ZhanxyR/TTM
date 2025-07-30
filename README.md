@@ -151,6 +151,7 @@ sh scripts/vllm_server.sh
 
 We call the LLM API by providing the `url`, `model_name`, and optionally an `API key` for authentication.
 
+The script uses `--chat` to skip preprocessing, please make sure that you have prepared the cached files.
 ```bash
 # Modify first: supplement or adjust the necessary parameters.
 sh scripts/demo.sh

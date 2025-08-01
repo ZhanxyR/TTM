@@ -317,6 +317,8 @@ sh scripts/demo.sh
 
 Go through the complete process of TTM — automatically constructing RPLA from textual input.
 
+<img width="3288" height="1928" alt="pipeline_v3" src="https://github.com/user-attachments/assets/2d9e3a2a-62ca-4766-a554-f9adc9350e80" />
+
 > [!IMPORTANT]
 > The entire process involves **a significant number of API calls**. Please confirm that you truly intend to proceed.
 

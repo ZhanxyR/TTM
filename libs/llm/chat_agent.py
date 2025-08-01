@@ -265,7 +265,7 @@ class ChatAgent:
                 context = self.prompt_wrapper('short_response', query=query, target=memory_checked_text)
                 memory_checked_text = self.send_message_with_system_prompt(self.system_prompt_chat, context).content.strip('\n')
 
-            if track_response:
+            if track_response or self.debug:
                 self.logger.info(f'Styleless Response: {target_text}')
                 self.logger.info(f'Rewritten Query: {rewritten_query}')
                 self.logger.info(f'Memory-checked Response: {memory_checked_text}')
@@ -274,11 +274,6 @@ class ChatAgent:
                 self.logger.info(f'Key node: {key_node}, {len(node_datas)}') if node_datas else self.logger.info('No key node.')
                 self.logger.info(f'key edge: {key_edge}, {len(edge_datas)}') if edge_datas else self.logger.info('No key edge.')
                 self.logger.info(f'Chunks: {chunks}')
-
-                if not track_response:
-                    self.logger.info(f'Styleless response: {target_text}')
-                    self.logger.info(f'Rewritten query: {rewritten_query}')
-                    self.logger.info(f'Memory-checked response: {memory_checked_text}')
 
             target_text = memory_checked_text
 

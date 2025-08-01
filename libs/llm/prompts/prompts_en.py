@@ -276,13 +276,10 @@ def enhance_coherence(query, target):
                 Response: {target}
 
                 Please refine the response to improve clarity, grammar, and overall coherence. If there are many redundant expressions with the same meaning in the reply, please optimize them.
+                Please focus on optimizing the text in terms of character consistency, accuracy of address/terms of reference, information relevance, expression accuracy, and language style.
 
                 Guidelines:
                 - Keep the action description in parentheses to ensure that there is no subject in the action description.
-                - Use your preferred vocabulary by replacing expressions with your commonly used alternatives.
-                - Follow your established preferences for pronouns and forms of address, including self-reference and how you refer to others.
-                - Align the tone and style of the response with your typical linguistic preferences.
-                - Closely follow the language patterns shown in example sentences to ensure consistency with your style.
                 - Return only the revised version of the response or, if no changes are needed, the original. Do not include explanations, comments, or additional text."""
     
     return message

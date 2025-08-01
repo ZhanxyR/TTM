@@ -1,6 +1,6 @@
 <p align="center">
 
-  <h1 align="left">Test-Time-Matching: Decouple Personality, Memory, and Linguistic Style in LLM-based Role-Playing Language Agent</h1>
+  <h2 align="left">Test-Time-Matching: Decouple Personality, Memory, and Linguistic Style in LLM-based Role-Playing Language Agent</h1>
   <p align="left">
     <a href="https://zhanxy.xyz/" rel="external nofollow noopener" target="_blank"><strong>Xiaoyu Zhan</strong></a>
     ·
@@ -152,10 +152,13 @@ sh scripts/vllm_server.sh
 We call the LLM API by providing the `url`, `model_name`, and optionally an `API key` for authentication.
 
 The script uses `--chat` to skip preprocessing, please make sure that you have prepared the cached files.
+
 ```bash
 # Modify first: supplement or adjust the necessary parameters.
 sh scripts/demo.sh
 ```
+
+If you want to track the changes in TTM's three-stage generation, use `--track`.
 
 > [!NOTE]
 > For more details of our parameters, please click on the folding bar below.
@@ -217,6 +220,8 @@ sh scripts/demo.sh
   Run in test mode, with predefined user inputs rather than interaction. (`False` by default).
 #### `--short`
   Run in short mode, the agent will generate shorter responses. (`False` by default).
+#### `--track`
+  Run in tracking mode, compare the performance of three-stage generation.
 
 </details>
 
@@ -322,7 +327,7 @@ Go through the complete process of TTM — automatically constructing RPLA from 
 > [!IMPORTANT]
 > The entire process involves **a significant number of API calls**. Please confirm that you truly intend to proceed.
 
-### 1. Try with Our Examples
+### 1. Try with Our Tiny Examples
 ```bash
 # Modify first: supplement or adjust the necessary parameters.
 sh scripts/complete_en.sh

@@ -145,7 +145,7 @@ class ChatAgent:
         self.system_prompt_matching = self.init_system_prompt_matching()
 
     # https://python.langchain.ac.cn/docs/tutorials/chatbot/
-    def init_role_playing(self, memory_k=5, matching_type='dynamic', matching_k=10, max_common_words=10, short_response=False, use_clean=True, clean_first_only=False, split_sentence=False, \
+    def init_role_playing(self, memory_k=5, matching_type='dynamic', matching_k=10, max_common_words=10, short_response=False, track_response=False, use_clean=True, clean_first_only=False, split_sentence=False, \
                           disable_action=False, disable_personality=False, disable_background=False, disable_linguistic_preference=False, disable_common_words=False, disable_matching=False):
 
         self.memory_k = memory_k
@@ -154,6 +154,7 @@ class ChatAgent:
         self.max_common_words = max_common_words
 
         self.short_response = short_response
+        self.track_response = track_response
         self.use_clean = use_clean
         self.clean_first_only = clean_first_only
         self.split_sentence = split_sentence
@@ -176,7 +177,8 @@ class ChatAgent:
 
 
             response = self.test_time_matching(query, response, type=self.matching_type, k=self.matching_k, \
-                                                short_response=self.short_response, disable_action=self.disable_action, use_graphrag=self.use_graphrag, split_sentence=self.split_sentence)
+                                                short_response=self.short_response, track_response=self.track_response, \
+                                                disable_action=self.disable_action, use_graphrag=self.use_graphrag, split_sentence=self.split_sentence)
 
             return {"messages": response}
 
@@ -243,7 +245,7 @@ class ChatAgent:
 
         return sequence
     
-    def test_time_matching(self, query, target_text, type='dynamic', k=10, short_response=False, disable_action=False, use_graphrag=False, enhance_coherence=True, split_sentence=False):
+    def test_time_matching(self, query, target_text, type='dynamic', k=10, short_response=False, track_response=False, disable_action=False, use_graphrag=False, enhance_coherence=True, split_sentence=False):
 
         # memory checking
         if use_graphrag:
@@ -263,14 +265,20 @@ class ChatAgent:
                 context = self.prompt_wrapper('short_response', query=query, target=memory_checked_text)
                 memory_checked_text = self.send_message_with_system_prompt(self.system_prompt_chat, context).content.strip('\n')
 
+            if track_response:
+                self.logger.info(f'Styleless Response: {target_text}')
+                self.logger.info(f'Rewritten Query: {rewritten_query}')
+                self.logger.info(f'Memory-checked Response: {memory_checked_text}')
+
             if self.debug:
-                self.logger.info(f'Without memory: {target_text}')
                 self.logger.info(f'Key node: {key_node}, {len(node_datas)}') if node_datas else self.logger.info('No key node.')
                 self.logger.info(f'key edge: {key_edge}, {len(edge_datas)}') if edge_datas else self.logger.info('No key edge.')
                 self.logger.info(f'Chunks: {chunks}')
-                self.logger.info(f'Target text: {target_text}')
-                self.logger.info(f'Rewritten query: {rewritten_query}')
-                self.logger.info(f'Memory checked text: {memory_checked_text}')
+
+                if not track_response:
+                    self.logger.info(f'Styleless response: {target_text}')
+                    self.logger.info(f'Rewritten query: {rewritten_query}')
+                    self.logger.info(f'Memory-checked response: {memory_checked_text}')
 
             target_text = memory_checked_text
 
@@ -295,9 +303,15 @@ class ChatAgent:
 
             target_text = response
 
+        
+
         # ensure coherence
         if enhance_coherence:  
+            if track_response or self.debug:
+                self.logger.info(f'Stylized Response (initial): {target_text}')
+
             message = self.prompt_wrapper('enhance_coherence', query=query, target=target_text)   
+            # response = self.send_message_with_system_prompt(self.system_prompt_chat, message)
             response = self.send_message_with_system_prompt(self.system_prompt_matching, message)
             target_text = response.content
 
@@ -305,7 +319,7 @@ class ChatAgent:
     
     def sentence_matching(self, query, target, references, origin=None):
         message = self.prompt_wrapper('linguistic_matching', query=query, target=target, references=references, origin=origin)
-        response = self.send_message_with_system_prompt(self.system_prompt_matching, message)
+        response = self.send_message_with_system_prompt(self.system_prompt_chat, message)
 
         return response
     

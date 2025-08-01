@@ -43,6 +43,7 @@ def parse():
     parser.add_argument('--chat', action='store_true', default=False, help='Run in chatting mode, do not execute any document processing.')
     parser.add_argument('--test', action='store_true', default=False, help='Run in test mode, with predefined user inputs rather than interaction.')
     parser.add_argument('--short', action='store_true', default=False, help='Run in short mode, the agent will generate shorter responses.')
+    parser.add_argument('--track', action='store_true', default=False, help='Run in tracking mode, compare the performance of three-stage generation.')
 
     # Model args
     parser.add_argument('--haruhi_model', type=str, default='silk-road/Haruhi-Dialogue-Speaker-Extract_qwen18', help='The path to the Haruhi model. Won\'t be used if args.use_haruhi is False.')
@@ -243,6 +244,40 @@ def process_role(args, root_dir, logger, model, chunks, selected_sentences, role
 
     return linguistic_style, personality, background
 
+def process_role_sentences(args, root_dir, logger, roles_sentences, selected_roles):
+    confirmed_roles = []
+    selected_sentences = []
+
+    use_cache = False
+
+    # collect sentences for selected roles
+    for role in selected_roles:
+        # prioritize cache usage
+        if not recalculate(args.ignore_cache, [os.path.join(root_dir, role, 'sentences.json')]):
+            confirmed_roles = [role]
+            use_cache = True
+            break
+
+        if role not in roles_sentences:
+            logger.warning(f'Role \'{role}\' is not found in the role list.')
+            continue
+        
+        if role not in confirmed_roles:
+            confirmed_roles.append(role)
+            selected_sentences += roles_sentences[role]
+
+    role_sentences_path = os.path.join(root_dir, confirmed_roles[0], 'sentences.json')
+
+    if (not args.chat) and recalculate(args.ignore_cache, [role_sentences_path]):
+        save_to_json(selected_sentences, role_sentences_path)
+        logger.info(f'Save selected sentences to \'{role_sentences_path}\'.')
+    elif use_cache:
+        selected_sentences = read_from_json(role_sentences_path)
+        logger.info(f'Load cached selected sentences from \'{role_sentences_path}\'.')
+
+    return selected_sentences, confirmed_roles
+
+
 if __name__ == '__main__':
 
     args = parse()
@@ -291,30 +326,12 @@ if __name__ == '__main__':
             model.build_graphrag(dataset_path=os.path.join(root_dir, 'chunks.json'), working_dir=root_dir, dataset_name=args.name, rebuild=(args.ignore_cache or args.rebuild_graphrag), embedding_model=args.graph_embedding_model, max_concurrent = 1 if args.serial else args.workers, chunk_size=args.chunk_size+args.chunk_overlap, chat=args.chat)
             logger.info(f'Build graphrag from chunks. Save to \'{os.path.join(root_dir, "rkg_graph")}\'.')
 
-        # select the role with the most sentences
-        # sorted_roles_sentences = sorted(roles_sentences.items(), key=lambda x: len(x[1]), reverse=True)
-        # for i in range(len(sorted_roles_sentences)):
-        #     if sorted_roles_sentences[i][0] != '说话人姓名':
-        #         selected_roles = [sorted_roles_sentences[i][0]]
-        #         break
-        # selected_roles = [sorted_roles_sentences[1][0]]
-
         selected_roles = re.split(r'[,，]', args.roles)
         selected_roles = [r.strip() for r in selected_roles]
 
-        selected_sentences = []
-        confirmed_roles = []
+        # get selected sentences for selected roles
+        selected_sentences, confirmed_roles = process_role_sentences(args, root_dir, logger, roles_sentences, selected_roles)
     
-        # collect sentences for selected roles
-        for role in selected_roles:
-            if role not in roles_sentences:
-                logger.warning(f'Role \'{role}\' is not found in the role list.')
-                continue
-            if role not in confirmed_roles:
-                confirmed_roles.append(role)
-                selected_sentences += roles_sentences[role]
-    
-        # confirmed_roles = list(confirmed_roles)
         logger.info(f'Using \'{len(selected_sentences)}\' sentences of roles: {confirmed_roles}')
 
         if len(selected_sentences) == 0:
@@ -348,13 +365,13 @@ if __name__ == '__main__':
 
         model.init_role_playing(role_name, linguistic_retriever, processor, personality=personality, background=background, linguistic_style=linguistic_style, \
                                 memory_k=args.memory_k, matching_type=args.matching_type, matching_k=args.matching_k, max_common_words=args.max_common_words, \
-                                short_response=args.short, use_clean=args.use_clean, clean_first_only=args.clean_first_only, split_sentence=args.split_sentence, \
+                                short_response=args.short, track_response=args.track, use_clean=args.use_clean, clean_first_only=args.clean_first_only, split_sentence=args.split_sentence, \
                                 disable_action=args.disable_action, disable_personality=args.disable_personality, disable_background=args.disable_background, \
                                 disable_linguistic_preference=args.disable_linguistic_preference, disable_common_words=args.disable_common_words, disable_matching=args.disable_matching)
         
         # model.set_seed()
 
-        logger.info('Role playing starts.')
+        logger.info(f'Role playing starts: {role_name}')
 
         # short response
         extra_prompt = ''
@@ -385,10 +402,12 @@ if __name__ == '__main__':
         # test mode
         if args.language == 'zh':
             inputs = ['你好，我是林临。', \
-                    '你有什么兴趣爱好吗？']
+                    '你有什么兴趣爱好吗？', \
+                    '最近过得怎么样？']
         else:
             inputs = ['Hi, I\'m Lin.',\
-                    'Do you have any hobbies or interests?']
+                    'Do you have any hobbies or interests?', \
+                    'How is your day going on?']
 
         for i in inputs:
             

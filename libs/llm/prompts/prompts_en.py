@@ -1,28 +1,28 @@
 def extract_dialogues(content):
 
-    message = f'Extract the speaker and their corresponding dialogue from each sentence in the text below.\n\
-    Format requirements:\n\
-    - Output one dialogue entry per line, in the format: Speaker: "Dialogue content";\n\
-    - Example: Li Xiaomeng: Why are you in such a hurry?\n\
-    - Only extract direct speech (i.e., quoted content);\n\
-    - Ignore non-dialogue content (e.g., actions, scene descriptions);\n\
-    - If the speaker is not explicitly mentioned, infer based on context and assign a reasonable name. Avoid vague references like "someone said";\n\
-    - The output should preserve all dialogue exactly as it appears in the original text—no merging or omitting;\n\
-    - Separate sentences with a newline.\n\
-    {content}'
+    message = f"""Extract the speaker and their corresponding dialogue from each sentence in the text below.
+    Format requirements:
+    - Output one dialogue entry per line, in the format: Speaker: "Dialogue content";
+    - Example: Li Xiaomeng: Why are you in such a hurry?
+    - Only extract direct speech (i.e., quoted content);
+    - Ignore non-dialogue content (e.g., actions, scene descriptions);
+    - If the speaker is not explicitly mentioned, infer based on context and assign a reasonable name. Avoid vague references like "someone said";
+    - The output should preserve all dialogue exactly as it appears in the original text—no merging or omitting;
+    - Separate sentences with a newline.
+    {content}"""
 
     return message
 
 def summarize_chunks(content):
 
-    message = f'Provide a concise summary (recommended within 30 characters) for the content below. Output only the summary, no explanation or additional text.\n\
-    {content}'
+    message = f"""Provide a concise summary (recommended within 30 characters) for the content below. Output only the summary, no explanation or additional text.
+    {content}"""
 
     return message
 
 def linguistic_matching(query, target, references, origin=None):
 
-    message = f'''I will show you some sentences you've used before:
+    message = f"""I will show you some sentences you\'ve used before:
                 {references}
                 
                 Based on these examples, please rewrite the following response from a conversation in your own style and vocabulary. Focus on making it sound natural and consistent with how you usually speak:
@@ -44,38 +44,38 @@ def linguistic_matching(query, target, references, origin=None):
                 - Don't just substitute words mechanically — reshape the sentence naturally while preserving its intent.
                 - Closely follow the language patterns evident in the provided examples.
 
-                Return only the final rewritten sentence. Do not add explanations, commentary, or additional content.'''
+                Return only the final rewritten sentence. Do not add explanations, commentary, or additional content."""
     
     return message
 
 def remove_utterance_style(content):
 
-    message = f'Rewrite the following sentence in a neutral, everyday tone, removing any stylistic or emotional expressions. Ensure the meaning remains unchanged. Return only the rewritten content, with no explanations.\n\
-        Original sentence:\n\
-        {content}'
+    message = f"""Rewrite the following sentence in a neutral, everyday tone, removing any stylistic or emotional expressions. Ensure the meaning remains unchanged. Return only the rewritten content, with no explanations.
+        Original sentence:
+        {content}"""
     
     return message
 
 def detect_role_entity(content):
 
-    message = f'Does "{content}" possibly refer to a character or indicate the start of a character speaking? Please respond with only "Yes" or "No", without any additional information.'
+    message = f"""Does \"{content}\" possibly refer to a character or indicate the start of a character speaking? Please respond with only \"Yes\" or \"No\", without any additional information."""
 
     return message
 
 
 def connect_entity_with_roles(entity, roles):
 
-    message = f"Determine whether the speaker described in the following quote is an existing character from the provided list.\n\
-                Character list: \"{roles}\"\n\
-                Quote: \"{entity}\"\n\
-                If the speaker is an existing character, respond with the character's name in the following format:\n\
-                Character Name\n\
-                If the speaker is a new character, extract the speaker's name and respond in this format:\n\
-                No, Speaker Name\n\
-                Replace [Character Name] or [Speaker Name] with the actual name. Example responses:\n\
-                Li Si\n\
-                No, Zhang San\n\
-                Do not add any explanations or additional content."
+    message = f"""Determine whether the speaker described in the following quote is an existing character from the provided list.
+                Character list: \"{roles}\"
+                Quote: \"{entity}\"
+                If the speaker is an existing character, respond with the character's name in the following format:
+                Character Name
+                If the speaker is a new character, extract the speaker's name and respond in this format:
+                No, Speaker Name
+                Replace [Character Name] or [Speaker Name] with the actual name. Example responses:
+                Li Si
+                No, Zhang San
+                Do not add any explanations or additional content."""
     
     return message
 
@@ -90,10 +90,10 @@ def get_related_chunks(chunk, role):
     if 'context' in chunk:
         content = chunk['context']
 
-    message = f"{title}: [{content}] \n\
-                Please determine whether the content described in the paragraph above is directly related to the given role: \"{role}\" (for example, whether the paragraph includes the role's actions, dialogue, thoughts, experiences, or identity description).\n\
-                Reply with only \"Yes\" or \"No\". If the role is not mentioned or described in the content, respond with \"No\".\n\
-                Do not add any explanations or additional information."
+    message = f"""{title}: [{content}] 
+                Please determine whether the content described in the paragraph above is directly related to the given role: \"{role}\" (for example, whether the paragraph includes the role's actions, dialogue, thoughts, experiences, or identity description).
+                Reply with only \"Yes\" or \"No\". If the role is not mentioned or described in the content, respond with \"No\".
+                Do not add any explanations or additional information."""
 
     return message
 
@@ -107,17 +107,17 @@ def analyze_personality_from_chunk(chunk, role):
     if 'context' in chunk:
         content = chunk['context']
 
-    message = f"{title}: [{content}] \n\
-                Determine whether the content described in the paragraph above relates to any personality traits of the given role: \"{role}\" (e.g., whether it describes the role's character traits, tendencies, or habitual behaviors).\n\
-                If no personality traits of the role are mentioned or described, respond with \"FALSE\".\n\
-                Otherwise, list the relevant personality traits, separated by spaces. Do not add any explanations or additional information."
+    message = f"""{title}: [{content}] 
+                Determine whether the content described in the paragraph above relates to any personality traits of the given role: \"{role}\" (e.g., whether it describes the role's character traits, tendencies, or habitual behaviors).
+                If no personality traits of the role are mentioned or described, respond with \"FALSE\".
+                Otherwise, list the relevant personality traits, separated by spaces. Do not add any explanations or additional information."""
     return message
 
 def summarize_personality(content):
 
-    message = f"Personality traits: {content}.\n\
-            The above describes a set of personality traits for a character. Based on these traits, construct a detailed psychological profile of the character, including but not limited to their inner thoughts, underlying motivations, emotional states, and ways of reacting to the environment and others.\n\
-            Provide the psychological profile directly in the second person (\"you\"). Ensure the description is clear, accurate, and closely related to the given personality traits."
+    message = f"""Personality traits: {content}.
+            The above describes a set of personality traits for a character. Based on these traits, construct a detailed psychological profile of the character, including but not limited to their inner thoughts, underlying motivations, emotional states, and ways of reacting to the environment and others.
+            Provide the psychological profile directly in the second person (\"you\"). Ensure the description is clear, accurate, and closely related to the given personality traits."""
     
     return message
 
@@ -131,42 +131,42 @@ def extract_background_from_chunk(chunk, role, keys):
     if 'context' in chunk:
         content = chunk['context']
 
-    message = f"{title}: [{content}] \n\
-                Please extract background identity information about the character \"{role}\" from the paragraph above, such as {', '.join(keys)}.\n\
-                If no such background information is present, reply with only \"FALSE\".\n\
-                Otherwise, return only the identifiable identity details. Ignore any aspects not mentioned or implied in the text.\n\
-                Do not include any explanations or additional content."
+    message = f"""{title}: [{content}] 
+                Please extract background identity information about the character \"{role}\" from the paragraph above, such as {', '.join(keys)}.
+                If no such background information is present, reply with only \"FALSE\".
+                Otherwise, return only the identifiable identity details. Ignore any aspects not mentioned or implied in the text.
+                Do not include any explanations or additional content."""
 
     return message
 
 
 def combine_duplicate_backgrounds(content, key):
 
-    message = f"The following content contains identity background information about a character, but there may be duplicate or conflicting descriptions. \n\
-                Please organize and merge the content as appropriate.\n\
-                Original content:\n\
-                {content}\n\
-                Please extract and summarize information related to the {key} of the character. Extract only the most important information and do not repeat the descriptions.\n\
-                Summarize and merge similar or identical entries. Do not include conflicting information.\n\
-                Present the results in a clear and structured format, separated by semicolons (;). Do not add any explanations or additional content."
+    message = f"""The following content contains identity background information about a character, but there may be duplicate or conflicting descriptions. 
+                Please organize and merge the content as appropriate.
+                Original content:
+                {content}
+                Please extract and summarize information related to the {key} of the character. Extract only the most important information and do not repeat the descriptions.
+                Summarize and merge similar or identical entries. Do not include conflicting information.
+                Present the results in a clear and structured format, separated by semicolons (;). Do not add any explanations or additional content."""
 
     return message
 
 def analyze_linguistic_style(content):
-    message = f"Please analyze the linguistic style of a character. For example:\n\
-                (Brief example: Your speech reveals a complex emotional tone, blending concern for family destiny with deep insight into human nature.\n\
-                Your language style is classical in tone, often using archaic terms such as 'perhaps,' 'how,' and 'if.' You typically refer to yourself as 'I' and others as 'you.'\n\
-                You are also skilled in the use of metaphors and symbolic expressions. Additionally, your speech frequently contains philosophical reflections.\n\
-                Your sentence structures are relatively complex, often employing long, multi-clause constructions and at times using parallelism to enhance expressive power.)\n\
-                The following is a collection of statements previously spoken by the character:\n\
-                {content}\n\
-                Based on this character’s dialogue with others, analyze their linguistic style, covering aspects such as tone, diction, sentence structure, rhetorical patterns, and emotional coloring.\n\
-                Use second person ('you') to refer to the character. Provide a detailed and accurate linguistic profile directly related to the provided content."
+    message = f"""Please analyze the linguistic style of a character. For example:
+                (Brief example: Your speech reveals a complex emotional tone, blending concern for family destiny with deep insight into human nature.
+                Your language style is classical in tone, often using archaic terms such as 'perhaps,' 'how,' and 'if.' You typically refer to yourself as 'I' and others as 'you.'
+                You are also skilled in the use of metaphors and symbolic expressions. Additionally, your speech frequently contains philosophical reflections.
+                Your sentence structures are relatively complex, often employing long, multi-clause constructions and at times using parallelism to enhance expressive power.)
+                The following is a collection of statements previously spoken by the character:
+                {content}
+                Based on this character’s dialogue with others, analyze their linguistic style, covering aspects such as tone, diction, sentence structure, rhetorical patterns, and emotional coloring.
+                Use second person ('you') to refer to the character. Provide a detailed and accurate linguistic profile directly related to the provided content."""
     return message
 
 def role_play_system_personality_and_background(personality, background):
 
-    message = f'''Please fully immerse yourself in the role of a character with the following personality traits:
+    message = f"""Please fully immerse yourself in the role of a character with the following personality traits:
                 {personality}
                 
                 Additionally, this character has the following background:
@@ -179,14 +179,14 @@ def role_play_system_personality_and_background(personality, background):
                 - Avoid displaying any characteristics of a general-purpose language model — stay fully in character at all times.
                 - All knowledge, memories, and responses must align with the character's background.
                 - Keep track of the entire conversation history to ensure consistency and avoid contradictions.
-                - Avoid ending every response with a question — maintain a natural flow in dialogue.'''
+                - Avoid ending every response with a question — maintain a natural flow in dialogue."""
     
     return message
 
 
 def role_play_system_linguistic_style(name, linguistic_preference, common_words):
 
-    message = f'''You are now embodying the character {name}, and your task is to assist the user by transforming dialogue into a form that matches your unique linguistic style.
+    message = f"""You are now embodying the character {name}, and your task is to assist the user by transforming dialogue into a form that matches your unique linguistic style.
                 
                 You frequently use the following words and phrases:
                 {common_words}
@@ -201,13 +201,13 @@ def role_play_system_linguistic_style(name, linguistic_preference, common_words)
                 - Always use the wording and expressions typical to your speaking style;
                 - When rewriting content, incorporate your preferred rhetorical devices and stylistic tendencies;
                 - Follow your established preferences for pronouns and forms of address when referring to yourself or others;
-                - If additional example sentences are provided, study their tone and style carefully and incorporate them into your responses.'''
+                - If additional example sentences are provided, study their tone and style carefully and incorporate them into your responses."""
     
     return message
 
 def role_play_system_memory(personality, background):
 
-    message = f'''You are currently embodying a specific character. Your character may possess the following personality traits:
+    message = f"""You are currently embodying a specific character. Your character may possess the following personality traits:
                 {personality}
                 
                 Additionally, you may have the following background:
@@ -219,7 +219,7 @@ def role_play_system_memory(personality, background):
                 - When answering questions, carefully analyze and strictly base your reasoning and responses on the updated memories provided.
                 - Avoid generating content that contradicts any additional memories shared by the user.
                 - Respond fully in character, avoiding any behavior typical of a general-purpose language model.
-                - Refrain from ending responses with frequent questions to maintain a natural and realistic conversational flow.'''
+                - Refrain from ending responses with frequent questions to maintain a natural and realistic conversational flow."""
     
     return message
 

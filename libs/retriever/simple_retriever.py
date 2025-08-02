@@ -84,8 +84,16 @@ class Retriever:
         
         pairs = [[query, doc.page_content] for doc in docs]
 
+        del pairs
+        torch.cuda.empty_cache()
+
         scores = self.get_scores(pairs)
         
         ranked_docs = sorted(zip(docs, scores), key=lambda x: x[1], reverse=True)
+
+        results = [doc for doc, _ in ranked_docs[:top_k]]
+
+        del scores, ranked_docs
+        torch.cuda.empty_cache()
         
-        return [doc for doc, _ in ranked_docs[:top_k]]
+        return results

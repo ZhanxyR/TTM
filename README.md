@@ -169,15 +169,30 @@ We call the LLM API by providing the `url`, `model_name`, and optionally an `API
 
 The script uses `--chat` to skip preprocessing, please make sure that you have prepared the cached files.
 
+If you want to track changes during TTM's three-stage generation process, use the `--track` flag.
+
+
 ```bash
 # Modify first: supplement or adjust the necessary parameters.
 sh scripts/demo.sh
 ```
 
 > [!IMPORTANT]
-> If you encounter a `CUDA out of memory` error, try using smaller models.<br>For example:<br>--embedding_model BAAI/bge-large-zh-v1.5<br>--rerank_model BAAI/bge-reranker-large<br><br>If it still doesn't work, try to reduce the number of retrieval sentences:<br>--retriever_k_l 20
-
-If you want to track changes during TTM's three-stage generation process, use the `--track` flag.
+> If you encounter the `CUDA out of memory` or `ValueError: No implementation for rerank_model in 'get_scores'`, try to reduce the number of retrieval sentences or use smaller models.  
+> For example:
+> 
+> ```bash
+> --retriever_k_l 20
+> # or
+> --embedding_model BAAI/bge-large-zh-v1.5
+> --rerank_model BAAI/bge-reranker-large
+> ```
+> 
+> If you encounter the `RuntimeError: CUDA error: device-side assert triggered`, try to reduce the number of retrieval sentences:
+> 
+> ```bash
+> --retriever_k_l 20
+> ```
 
 > [!NOTE]
 > For more details of our parameters, please click on the folding bar below.

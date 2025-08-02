@@ -174,7 +174,10 @@ The script uses `--chat` to skip preprocessing, please make sure that you have p
 sh scripts/demo.sh
 ```
 
-If you want to track the changes in TTM's three-stage generation, use `--track`.
+> [!IMPORTANT]
+> If you encounter a `CUDA out of memory` error, try using smaller models.<br>For example:<br>--embedding_model BAAI/bge-large-zh-v1.5<br>--rerank_model BAAI/bge-reranker-large<br><br>If it still doesn't work, try to reduce the number of retrieval sentences:<br>--retriever_k_l 20
+
+If you want to track changes during TTM's three-stage generation process, use the `--track` flag.
 
 > [!NOTE]
 > For more details of our parameters, please click on the folding bar below.

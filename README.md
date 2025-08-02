@@ -178,7 +178,7 @@ sh scripts/demo.sh
 ```
 
 > [!IMPORTANT]
-> If you encounter the `CUDA out of memory` or `ValueError: No implementation for rerank_model in 'get_scores'`, try to reduce the number of retrieval sentences or use smaller models.  
+> If you encounter the `CUDA out of memory` or `ValueError: No implementation for rerank_model in 'get_scores'`, try to reduce the number of retrieved sentences or use smaller models.  
 > For example:
 > 
 > ```bash
@@ -188,7 +188,7 @@ sh scripts/demo.sh
 > --rerank_model BAAI/bge-reranker-large
 > ```
 > 
-> If you encounter the `RuntimeError: CUDA error: device-side assert triggered`, try to reduce the number of retrieval sentences:
+> If you encounter the `RuntimeError: CUDA error: device-side assert triggered`, try to reduce the number of retrieved sentences:
 > 
 > ```bash
 > --retriever_k_l 20

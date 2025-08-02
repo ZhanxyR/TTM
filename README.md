@@ -28,6 +28,21 @@
 <img width="1942" height="1272" alt="teaser" src="https://github.com/user-attachments/assets/a427b3fe-303c-43ad-bb75-4a48225e54fe" />
 
 
+### **林黛玉 <*红楼梦*>** (Qwen3-32B)
+> **(指尖轻抚帕角，眉心微蹙)**<br>喉间又泛起那甜腥，倒似蜜糖化在肺腑，咳得魂儿散了半边。这般夜深人静，咳声倒像断线珠子，一颗颗砸在心头。紫鹃见我这般，摘了瓣零落的花搁在案头，还念叨着“花谢人离，原是天命”，这话儿倒又把旧日的针尖儿往心上戳了一回。<br>**(轻咳一声，指尖拂了拂案上诗笺边角)**<br>宝玉这几日也冷清了许多，想是前儿老爷点了他读书，连玩笑话儿也懒怠说了，教我一个人对着满室药香怔怔地发呆。我这身子骨，终究飘摇得很，像那弱柳，风一吹便散了。
+
+
+### **罗辑 <*三体*>** (Qwen3-32B)
+> **(抬手扶了扶胡须)**<br>威慑纪元四十三年了。时间这东西，像湖水，荡开一圈圈涟漪，最后又归于平静，仿佛什么都没发生过。太阳还在，信号灯也亮着，只是我这双腿，得靠根拐杖撑着走路了。<br>**(缓步走到窗边，凝视湖面)**<br>前两天居委会主任来，说我这屋子像本被翻旧的书，没人再读了。我倒觉得，就让它这样也好，安静些，清冷些，像块墓碑。她说得对，也许不对。这些数据、这些记录，至少能让我记得，我曾经不是个逃兵……<br>**(轻叹一声，抬手扶了扶拐杖)**<br>我还能撑多久？没人知道，连我自己也不清楚。
+
+
+
+### **D'Artagnan <*The Three Musketeers*>** (Qwen3-32B)
+> **(One hand brushing a lock of chestnut hair from his brow, the other tapping a restless rhythm on the hilt of his sword)**<br>The day has been a whirl of blades and breathless moments—letters carried, a clash of tempers averted by the skin of my teeth, and a rancorous rascal bested under the flickering street lamps.<br>**(A flash of a smile, quick as a blade)**<br>I have not a moment to spare for idleness, Monsieur—every hour bears its trial, and I face it with blade in hand and heart ablaze.<br>**(Pauses, then adds with a sly glance)**<br>How fares your day, Lin? Do you find your days as full of intrigue as mine?
+
+### **Dumbledore <*Harry Potter*>** (Qwen3-32B)
+> **(Leaning forward slightly, eyes steady and kind.)**<br>Of course, my dear boy — I shall fetch you something at once.<br>**(A flick of the wand, and a cup of tea and a small vial appear.)**<br>A cup of tea, perhaps with a touch of elderflower or chamomile, might be a most suitable choice at this hour. Should you still feel the need for something stronger, I would suggest a glass of mead — a drink of milder temperament, I should imagine, than firewhisky.<br>**(A pause.)**<br>I am quite certain I know those eyes — a most disquieting omen, I fear, of great strength and danger. But you are safe now, I assure you. Tell me, child, what else do you recall? Even the smallest memory may yet prove of the utmost importance. Hogwarts is ancient, and it remembers. If something has stirred within these walls, we must know why.
+
 ## Overview
 - [1 - Installation](#installation)
 - [2 - Demo](#demo)
@@ -88,7 +103,7 @@ Download from [Hugging Face](https://huggingface.co/datasets/asinmhk/TTM_cache).
 
 ## **Chinese**
 
-#### **红楼梦_Qwen25_32B**
+#### **红楼梦_Qwen25_32B / Qwen3_32B**
 - 林黛玉， 黛玉
 - 宝玉， 贾宝玉
 - 贾母

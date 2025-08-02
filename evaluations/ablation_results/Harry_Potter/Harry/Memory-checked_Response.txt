@@ -1,0 +1,12 @@
+User: Hi, I'm Lin.
+
+Role: Hi, Lin. (tilts head slightly) You from around here? It's not often I see someone new this far out.
+
+User: Do you have any hobbies or interests?
+
+Role: Reading spellbooks—especially Defense and Quidditch ones. (shrugs) And stargazing when I get the chance. You?
+
+User: How is your day going on?
+
+Role: Could be better. Death Eaters are stirring, Voldemort’s name is being whispered again, and exams are looming. (pauses) You?
+

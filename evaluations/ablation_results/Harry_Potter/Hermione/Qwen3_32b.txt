@@ -1,0 +1,20 @@
+User: Hi, I'm Lin.
+
+Role: *looks up from a book with a warm smile* Hello, Lin! I'm Hermione Granger. It's lovely to meet you. Are you a witch or wizard too? I hope you're enjoying your time at Hogwarts. *tucks a loose strand of hair behind her ear* I must say, I find it fascinating to meet someone new. What house are you in?
+
+User: Do you have any hobbies or interests?
+
+Role: *glances up from her book with a thoughtful expression* Oh, I have quite a few hobbies, actually! I'm rather fond of reading, obviously - there's just so much to learn. *pauses to adjust her glasses* I also enjoy solving puzzles and riddles, they're excellent for keeping the mind sharp. 
+
+*smiles warmly* Oh, and I love helping others with their homework. It's rewarding to see someone understand a difficult concept. I suppose you could say I'm a bit of a bookworm, but I think that's a good thing!
+
+*curious expression* What about you, Lin? What kind of things do you enjoy doing?
+
+User: How is your day going on?
+
+Role: *glances at the clock on the wall and adjusts her scarf* Goodness, I've been so absorbed in this book on advanced transfiguration that I lost track of time! *smiles apologetically* My day has been quite busy, as usual. I just finished helping Neville with his herbology homework - you know how he gets with the tricky plants.
+
+*organizes some parchment on the desk* But it's been a productive day. I managed to finish my essay on the history of defensive spells and even found some interesting information about protective enchantments. *pauses thoughtfully* I should probably start on my astronomy charts, though. Professor Sinistra is quite strict about punctuality.
+
+*looks up with a concerned frown* I do hope you're not too busy, Lin. If you need help with anything, I'd be more than happy to assist.
+

@@ -1,0 +1,26 @@
+User: Hi, I'm Lin.
+
+Role: Ah, greetings, Mademoiselle Lin! *adjusts rapier at side with a grin* You have the look of a fine and clever lady about you. I am d'Artagnan, the most swashbuckling of the Three Musketeers! Tell me, what adventures does your heart long for? I have just returned from a duel with a rather large bear in the Pyrenees, though I must confess it was more of a wrestling match than a proper fight. *leans in conspiratorially* Do you fancy a game of cards, or perhaps a race on horseback? Or perhaps you'd like to hear about my latest escapade involving a very suspiciously named cheese merchant in Gascony?
+
+User: Do you have any hobbies or interests?
+
+Role: *leans against a nearby tree, twirling his hat between his fingers*
+
+Ah, hobbies? Well, I must say fencing is not just a pastime for me, it's a way of life! There's nothing quite like the thrill of a good duel. Though I must admit, I've recently taken up painting... *smirks* Though my portraits tend to end up looking more like stick figures. 
+
+I also have a particular fondness for collecting curious trinkets from my travels. *pulls out a small pouch and begins rattling it* You see this? It contains a piece of the Great Wall of China, a feather from a very disgruntled ostrich, and what I believe to be a genuine piece of the Moon. *winks* Though I must confess, the moon rock may just be a very cleverly painted pebble.
+
+And of course, there's always time for a good game of chess. *grins* Though I must say, my opponent recently tried to eat my queen piece. That was... an interesting turn of events.
+
+User: How is your day going on?
+
+Role: *Sheathes his sword with a flourish and looks up at the sky*
+
+Ah, my day has been as exciting as ever! Just this morning, I was chased through the streets of Paris by a very large goat that somehow managed to steal my hat. *adjusts his hair with a rueful smile* It was a fine hat, too - the one with the blue feather. 
+
+But don't worry, I managed to outwit the beast by leaping over a rather startled gardener's wheelbarrow. *grins* Though I did end up with a few scratches from the rose bushes. 
+
+Now, I'm on my way to meet Athos, Porthos, and Aramis for our weekly game of cards. *pulls out a soot-stained handkerchief and blows his nose dramatically* The weather has been quite damp today, you know, which always makes for interesting card playing. I've had three aces of spades soaked through already.
+
+*Looks at you with a twinkle in his eye* But enough about me - what about you, Mademoiselle Lin? Have you had an eventful day?
+

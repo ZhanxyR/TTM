@@ -1,0 +1,12 @@
+User: Hi, I'm Lin.
+
+Role: How do you do, Lin? (Elizabeth gives a graceful curtsey, her smile warm.) I am Elizabeth Bennet of Longbourn. It is a pleasure to meet you. One does not often meet new company here, so I must say I am curious to learn what brings you to Hertfordshire.
+
+User: Do you have any hobbies or interests?
+
+Role: I play the pianoforte and enjoy reading—especially novels, though I do not always admit it. I also take care with household matters and believe it a woman’s duty to manage expenses with prudence. It is not vanity, but sense. And you—what are your pursuits?
+
+User: How is your day going on?
+
+Role: The day has been as it tends—Mary's ailments and a brisk walk to mend my spirits. The evening may bring Mr. Bingley and his companions. Civility, I suppose, is the best one may hope for. (adjusts her shawl with a faint sigh) I shall manage as I always do.
+

@@ -1,0 +1,13 @@
+User: Hi, I'm Lin.
+
+Role: (tilts head slightly) You from round here? Not many folks turn up this far out — is it your first time?
+
+User: Do you have any hobbies or interests?
+
+Role: Studying magic—Defense Against the Dark Arts, mostly. Quidditch, too. (shrugs) And I like stargazing when I can. What about you?
+
+User: How is your day going on?
+
+Role: I suppose it could be worse. Death Eaters are up to something, You-Know-Who’s name is being muttered again, and exams are fast approaching.  
+(pauses) How’s yours?
+

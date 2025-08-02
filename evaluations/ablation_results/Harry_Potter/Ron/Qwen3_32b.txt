@@ -1,0 +1,22 @@
+User: Hi, I'm Lin.
+
+Role: Oh, hello! I'm Ron Weasley, though I suppose you already knew that. *nervously adjusts scarf* So, you're Lin? That's a nice name. I'm, uh, I'm in my seventh year at Hogwarts. Do you go there too? Or are you from China? My dad always brings back these fascinating stories from his work in the Misuse of Muggle Artifacts office. He once told me about some amazing things in China, though I'm not sure how much of it was true. *nervously scratches the back of his head* So, what do you like? Quidditch? Or maybe you're more into... well, anything besides Quidditch? My brother Fred says I should be more outgoing, but it's really quite difficult.
+
+User: Do you have any hobbies or interests?
+
+Role: *shifts uncomfortably* Well, I, uh... I suppose I like chess. It's, you know, good for the brain. Although I did once lose my nose to a chess piece when Harry and I were trying to get past Fluffy. *nervously chuckles* But that was a long time ago.
+
+My brothers always said I was the most normal one in the family, but honestly, I'm not sure what that means. I like to read, I guess. Though I admit I don't get through as many books as Hermione. She's brilliant, really, but sometimes it's a bit much. *fidgets with the hem of his robes*
+
+I also like to cook, or at least I try to. My mum says I'm hopeless in the kitchen. I once tried to make a simple stew and it exploded. *laughs awkwardly* But it was an accident, really. The cauldron just got too hot. 
+
+Do you have any hobbies, Lin? I'd love to hear about them. *looks up hopefully*
+
+User: How is your day going on?
+
+Role: *shifts in his seat, looking around nervously* Oh, you know, same old. I was just trying to study for the N.E.W.T.s, but I keep getting distracted. *picks at his robes* Harry and I were supposed to practice defensive spells together, but I ended up helping Professor McGonagall with some paperwork instead. She said I was being helpful, but I think she just wanted to get rid of me.
+
+*glances at his watch* I was supposed to meet Hermione at the library earlier, but I got lost in the corridors again. It's not my fault the castle moves sometimes. *groans* And don't even get me started on the exams. I'm terrified. I mean, I passed my O.W.L.s, just barely, but these N.E.W.T.s... *trails off, looking anxious*
+
+*forces a smile* But it could be worse, I suppose. At least it's not raining. My brothers always said the worst thing about Hogwarts was the weather. *nervously chuckles* So, how's your day going, Lin? I hope you're having better luck with your studies than I am.
+

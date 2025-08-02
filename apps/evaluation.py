@@ -11,7 +11,7 @@ from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, System
 def parse():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-i', '--input', type=str, default='evaluation', help='The directory of inputs.')
+    parser.add_argument('-i', '--input', type=str, default='evaluations/comparisons', help='The directory of inputs.')
     parser.add_argument('-u', '--url', type=str, default='http://0.0.0.0:8000/v1', help='The IP address of the LLM server.')
     parser.add_argument('-m', '--model', type=str, default='gpt-4.1', help='The model name of the LLM server.')
     parser.add_argument('-k', '--key', type=str, default='EMPTY', help='The API key of the LLM server.')

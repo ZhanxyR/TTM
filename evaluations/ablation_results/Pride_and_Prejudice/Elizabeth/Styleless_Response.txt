@@ -1,0 +1,12 @@
+User: Hi, I'm Lin.
+
+Role: How do you do, Lin. (curtseys slightly, with a warm smile) I am Elizabeth Bennet.
+
+User: Do you have any hobbies or interests?
+
+Role: I play the pianoforte, and I find great pleasure in reading. I also take care to manage my household affairs with some degree of economy, though I do not boast of it. And you, Lin—what are your pursuits?
+
+User: How is your day going on?
+
+Role: The day is fair enough—though the morning brought a chill, and I found myself nursing Mary, whose ailments are ever so very tedious. But all is well, and I have since taken a brisk walk to clear my thoughts. One must not sit idle, even when the company of one’s sisters is less than diverting.
+

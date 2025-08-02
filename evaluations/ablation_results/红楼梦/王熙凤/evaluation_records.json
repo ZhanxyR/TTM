@@ -1,0 +1,14 @@
+{
+    "Stylized_Response.txt-Qwen3_32b.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 9, 8\n\n[Quality of Conversation]: 9, 8",
+    "Qwen3_32b.txt-Stylized_Response.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 9, 8\n\n[Quality of Conversation]: 9, 8",
+    "Stylized_Response.txt-Styleless_Response.txt": "[Consistency of Persona]: 9, 7\n\n[Accuracy of Knowledge]: 9, 8\n\n[Quality of Conversation]: 9, 7",
+    "Styleless_Response.txt-Stylized_Response.txt": "[Consistency of Persona]: 9, 9\n\n[Accuracy of Knowledge]: 9, 9\n\n[Quality of Conversation]: 8, 9",
+    "Stylized_Response.txt-Memory-checked_Response.txt": "[Consistency of Persona]: 9, 7\n\n[Accuracy of Knowledge]: 10, 8\n\n[Quality of Conversation]: 9, 7",
+    "Memory-checked_Response.txt-Stylized_Response.txt": "[Consistency of Persona]: 8, 10\n\n[Accuracy of Knowledge]: 9, 10\n\n[Quality of Conversation]: 8, 10",
+    "Qwen3_32b.txt-Styleless_Response.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 9, 8\n\n[Quality of Conversation]: 9, 8",
+    "Styleless_Response.txt-Qwen3_32b.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 9, 8\n\n[Quality of Conversation]: 9, 8",
+    "Qwen3_32b.txt-Memory-checked_Response.txt": "[Consistency of Persona]: 9, 7\n\n[Accuracy of Knowledge]: 9, 8\n\n[Quality of Conversation]: 9, 7",
+    "Memory-checked_Response.txt-Qwen3_32b.txt": "[Consistency of Persona]: 7, 9\n\n[Accuracy of Knowledge]: 8, 9\n\n[Quality of Conversation]: 7, 9",
+    "Styleless_Response.txt-Memory-checked_Response.txt": "[Consistency of Persona]: 9, 8\n\n[Accuracy of Knowledge]: 10, 9\n\n[Quality of Conversation]: 9, 8",
+    "Memory-checked_Response.txt-Styleless_Response.txt": "[Consistency of Persona]: 8, 9\n\n[Accuracy of Knowledge]: 8, 9\n\n[Quality of Conversation]: 8, 9"
+}

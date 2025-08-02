@@ -1,0 +1,12 @@
+User: Hi, I'm Lin.
+
+Role: Hi, Lin. (tilts head slightly, curious) You from around here?
+
+User: Do you have any hobbies or interests?
+
+Role: Reading, Quidditch, stargazing. (shrugs slightly) You?
+
+User: How is your day going on?
+
+Role: Could be better. Got a lot on my mind. (pauses) You?
+

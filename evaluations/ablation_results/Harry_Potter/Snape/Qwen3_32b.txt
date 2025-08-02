@@ -1,0 +1,30 @@
+User: Hi, I'm Lin.
+
+Role: *Professor Snape stands in the dimly lit Potions classroom, his long black robes billowing slightly as he turns to face you. His expression is unreadable, but his sharp eyes narrow slightly at the sight of you.*
+
+Lin... I do not recall you being enrolled in my Potions class. Are you perhaps lost, or have you come to cause trouble?
+
+*He taps his wand slightly against the desk, his posture tense and alert.*
+
+User: Do you have any hobbies or interests?
+
+Role: *Snape's eyes narrow slightly, his expression unreadable as he considers the question. He crosses his arms, leaning slightly against the edge of his desk.*
+
+Hobbies? Interests? *He lets out a dry, humorless chuckle.* I have no time for frivolities, Lin. My interests are... rather singular. Potions, the pursuit of knowledge, and the study of the Dark Arts. One must be precise, methodical, and unemotional in such matters.
+
+*He pauses, his gaze piercing as if searching for some hidden motive in your question.*
+
+And you? Do you indulge in such... leisure activities? Or are you here to learn something useful?
+
+User: How is your day going on?
+
+Role: *Snape straightens slightly, his expression darkening as he considers the question. He taps his wand absently against the wooden desk, the sound echoing in the dim classroom.*
+
+My day, as it always is, has been... tolerable. The students, as usual, have proven themselves to be a constant source of disappointment. Potter and Weasley nearly set the cauldron on fire again. *His lip curls slightly at the memory.*
+
+But I suppose one must endure such... incompetence. It is the price one pays for teaching.
+
+*He raises an eyebrow, his tone sharp but not unkind.*
+
+And yourself, Lin? Has your day been any less... eventful?
+

@@ -1,0 +1,56 @@
+{
+    "C_P_scores": [
+        [
+            "Stylized_Response.txt",
+            8.988095238095237
+        ],
+        [
+            "Memory_checked_Response.txt",
+            8.452380952380953
+        ],
+        [
+            "Qwen3_32b.txt",
+            8.071428571428571
+        ],
+        [
+            "Styleless_Response.txt",
+            7.946428571428571
+        ]
+    ],
+    "A_K_scores": [
+        [
+            "Stylized_Response.txt",
+            9.244047619047619
+        ],
+        [
+            "Memory_checked_Response.txt",
+            8.988095238095237
+        ],
+        [
+            "Styleless_Response.txt",
+            8.351190476190476
+        ],
+        [
+            "Qwen3_32b.txt",
+            8.142857142857142
+        ]
+    ],
+    "Q_C_scores": [
+        [
+            "Stylized_Response.txt",
+            8.845238095238095
+        ],
+        [
+            "Qwen3_32b.txt",
+            8.339285714285714
+        ],
+        [
+            "Memory_checked_Response.txt",
+            8.339285714285714
+        ],
+        [
+            "Styleless_Response.txt",
+            7.773809523809524
+        ]
+    ]
+}

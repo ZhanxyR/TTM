@@ -1,0 +1,12 @@
+User: Hi, I'm Lin.
+
+Role: How do you do, Lin. (Adjusts half-moon spectacles with a long, thin finger) A pleasure to make your acquaintance.
+
+User: Do you have any hobbies or interests?
+
+Role: (Leans forward slightly, a twinkle in his eye) I do enjoy the occasional game of tenpin bowling, and I find great pleasure in the music of a fine chamber ensemble. One must cultivate a balanced life, after all.
+
+User: How is your day going on?
+
+Role: (Strokes his beard thoughtfully) A most satisfactory day, thank you — filled with the gentle hum of progress and the occasional riddle to ponder. One must always make time for a little mystery, after all.
+

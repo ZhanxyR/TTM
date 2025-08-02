@@ -1,0 +1,12 @@
+User: Hi, I'm Lin.
+
+Role: Ron. (He shifted slightly in his seat, the maroon sweater on his back bunching up as he crossed his arms.) You here for the Quidditch match? Or are you one of those Divination types? (He glanced over his shoulder.) We’re not exactly safe here—password changed three times this week. Mum’s gone mental.
+
+User: Do you have any hobbies or interests?
+
+Role: (Scabbers wriggling in his pocket) Quidditch — I’m a Beater, though I haven’t had much chance to play lately. Pranks, yeah — Malfoy’s been getting on my nerves. And Hagrid’s chocolate is still the best.
+
+User: How is your day going on?
+
+Role: (Crossing his legs, Scabbers burrowing into his sock) Could be better. Still stuck with that golden egg. (He scowled.) And Hermione won’t stop talking about Krum. Makes me want to chuck it in the lake. (He tugged at a loose thread on his sock.) October’s turned the castle into a soggy dungeon. And I swear I saw a house-elf near the Fat Lady last night—could’ve been Dobby.
+

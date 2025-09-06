@@ -10,10 +10,14 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 class Retriever:
     def __init__(self, chunks, embedding_model="Qwen/Qwen3-Embedding-0.6B", rerank_model='Qwen/Qwen3-Reranker-0.6B', k=20, cached_dir ="cache/vector_cache", device="cuda", debug=False):
+        
+        self.cached_dir = cached_dir
+        self.k = k
+        self.embedding_model = HuggingFaceEmbeddings(model_name=embedding_model)
 
         self.vector_db = Chroma.from_documents(
             chunks,
-            embedding=HuggingFaceEmbeddings(model_name=embedding_model),
+            embedding=self.embedding_model,
             persist_directory=cached_dir,
             client_settings=Settings(anonymized_telemetry=False)
         )
@@ -54,6 +58,30 @@ class Retriever:
                 )
         except:
             raise ValueError(f"Load retriever model failed. Model name: {self.rerank_model}.")
+
+    def _update_retrievers_by_chunks(self, chunks):
+        try :
+            self.vector_db = Chroma.from_documents(
+                chunks,
+                embedding=self.embedding_model,
+                persist_directory=self.cached_dir,
+                client_settings=Settings(anonymized_telemetry=False)
+            )
+
+            self.bm25_retriever = BM25Retriever.from_documents(
+                chunks,
+                k=self.k
+            )
+
+            self.ensemble_retriever = EnsembleRetriever(
+                retrievers=[
+                    self.vector_db.as_retriever(search_kwargs={"k": self.k}),
+                    self.bm25_retriever
+                ],
+                weights=[0.5, 0.5]
+            )
+        except Exception as e:
+            print(f"update retrievers error : {e}")
 
 
     def get_scores(self, pairs):

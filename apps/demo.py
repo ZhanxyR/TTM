@@ -8,6 +8,7 @@ import re
 from libs.document.processor import DocumentProcessor
 from libs.retriever.simple_retriever import Retriever
 from libs.llm.base import LLM
+from libs.ui.backend import create_backend_server
 from libs.utils.logger import get_logger, remove_handlers
 from libs.utils.common import *
 
@@ -44,6 +45,7 @@ def parse():
     parser.add_argument('--test', action='store_true', default=False, help='Run in test mode, with predefined user inputs rather than interaction.')
     parser.add_argument('--short', action='store_true', default=False, help='Run in short mode, the agent will generate shorter responses.')
     parser.add_argument('--track', action='store_true', default=False, help='Run in tracking mode, compare the performance of three-stage generation.')
+    parser.add_argument('--backend', action='store_true', default=False, help='Run in backend mode, as a backend receiver of ui app.')
 
     # Model args
     parser.add_argument('--haruhi_model', type=str, default='silk-road/Haruhi-Dialogue-Speaker-Extract_qwen18', help='The path to the Haruhi model. Won\'t be used if args.use_haruhi is False.')
@@ -78,6 +80,8 @@ def parse():
     parser.add_argument('--disable_linguistic_preference', action='store_true', default=False, help='Disable the linguistic preference setting during chatting.')
     parser.add_argument('--disable_common_words', action='store_true', default=False, help='Disable the common words setting during chatting.')
     parser.add_argument('--disable_matching', action='store_true', default=False, help='Disable the linguistic style matching during chatting.')
+
+    parser.add_argument('--backend_port', type=int, default=8080, help='The port for the backend server. Default is 8888.')
 
     return parser.parse_args()
 
@@ -277,6 +281,44 @@ def process_role_sentences(args, root_dir, logger, roles_sentences, selected_rol
 
     return selected_sentences, confirmed_roles
 
+def get_role_initializer(args, root_dir, logger, roles_sentences, processor, model, chunks, Linguistic_retriever):
+    
+    def init_role_by_name(role_names):
+        selected_roles = role_names
+        selected_sentences, confirmed_roles = process_role_sentences(args, root_dir, logger, roles_sentences, selected_roles)
+        logger.info(f'Using \'{len(selected_sentences)}\' sentences of roles: {confirmed_roles}')
+
+        if len(selected_sentences) == 0:
+            raise ValueError(f'No sentences found for the selected roles: {selected_roles}. Please check the roles list: \'{os.path.join(root_dir, "roles.json")}\' and the sentences list: \'{os.path.join(root_dir, "roles_sentences.json")}\'.')
+        
+        connected_info = ', 又名' if args.language == 'zh' else ', also known as'
+        role_name = f'{confirmed_roles[0]}{connected_info}{",".join(confirmed_roles[1:])}' if len(confirmed_roles) > 1 else confirmed_roles[0]
+        logger.info(f'Process for role: \'{role_name}\'')
+
+        linguistic_style, personality, background = process_role(args, os.path.join(root_dir, confirmed_roles[0]), logger, model, chunks, selected_sentences, role_name)
+
+        logger.info(f'Create the TTM vector database with \'{len(selected_sentences)}\' sentences.')
+        if len(selected_sentences) <= args.matching_k:
+            logger.warning(f'The number of selected sentences ({len(selected_sentences)}) is less than or equal to the matching_k ({args.matching_k}). That means all the sentences will be used for matching.')
+
+        selected_sentences = processor.sentences_to_chunks(selected_sentences)
+        
+        if not args.disable_matching:
+            linguistic_retriever = Linguistic_retriever
+            linguistic_retriever._update_retrievers_by_chunks(selected_sentences)
+        else:
+            linguistic_retriever = None
+
+        model.init_role_playing(role_name, linguistic_retriever, processor, personality=personality, background=background, linguistic_style=linguistic_style, \
+                                memory_k=args.memory_k, matching_type=args.matching_type, matching_k=args.matching_k, max_common_words=args.max_common_words, \
+                                short_response=args.short, track_response=args.track, use_clean=args.use_clean, clean_first_only=args.clean_first_only, split_sentence=args.split_sentence, \
+                                disable_action=args.disable_action, disable_personality=args.disable_personality, disable_background=args.disable_background, \
+                                disable_linguistic_preference=args.disable_linguistic_preference, disable_common_words=args.disable_common_words, disable_matching=args.disable_matching)
+
+        logger.info(f'Role playing starts: {role_name}')
+        return role_name
+    
+    return init_role_by_name
 
 if __name__ == '__main__':
 
@@ -377,6 +419,20 @@ if __name__ == '__main__':
         extra_prompt = ''
         if args.short:
             extra_prompt = ' (简短回复)' if args.language == 'zh' else ' (Short response)'
+        
+        # backend mode
+        if args.backend:
+            logger.info('Enter backend mode')
+
+            init_role_by_name = get_role_initializer(args, root_dir, logger, roles_sentences, processor, model, chunks, linguistic_retriever)
+
+            app = create_backend_server(model, role_name, roles_sentences, init_role_by_name)
+            
+            logger.info(f'Backend server is running at http://127.0.0.1:{args.backend_port}')
+            
+            app.run(host='127.0.0.1', port=args.backend_port)
+            exit()
+
 
         # interactive mode
         if not args.test:

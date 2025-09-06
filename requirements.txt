@@ -40,3 +40,7 @@ pcst_fast
 huggingface_hub
 graspologic
 future
+
+# UI
+gradio==5.35.0
+flask
